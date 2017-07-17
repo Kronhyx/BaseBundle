@@ -46,7 +46,7 @@
     "sort-packages": true
   },
   "autoload": {
-    "psr-0": {
+    "psr-4": {
       "Kronhyx\\BaseBundle": ""
     },
     "exclude-from-classmap": [
