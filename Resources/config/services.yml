@@ -1,0 +1,37 @@
+parameters:
+    bundle_name: 'BaseBundle'
+
+services:
+
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    # makes classes in src/%bundle_name% available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Kronhyx\BaseBundle\:
+        resource: "../../../%bundle_name%/*"
+        exclude: "../../../%bundle_name%/{Entity,Repository,Tests,DependencyInjection,Twig}"
+        public: true
+        autowire: true
+
+    # controllers are imported separately to make sure they're public
+    # and have a tag that allows actions to type-hint services
+    Kronhyx\BaseBundle\Controller\:
+        resource: "../../../%bundle_name%/Controller"
+        public: true
+        tags: ['controller.service_arguments']
+        calls:
+            - [setContainer, ['@service_container']]
+
+    Kronhyx\BaseBundle\Twig\:
+        resource: "../../../%bundle_name%/Twig"
+        public: true
+        tags:
+            - { name: twig.extension }

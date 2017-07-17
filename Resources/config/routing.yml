@@ -1,0 +1,4 @@
+config:
+    resource: "@ConfigBundle/Controller/"
+    type:     annotation
+    prefix:   /
