@@ -11,7 +11,7 @@
     "api"
   ],
   "homepage": "https://kronhyx.github.io/BaseBundle/",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Randy Téllez Galán",
@@ -27,11 +27,16 @@
   "minimum-stability": "stable",
   "require": {
     "php": ">=7",
-    "symfony/framework-bundle":  ">=3.0.0"
+    "symfony/framework-bundle": ">=3.0.0"
   },
   "autoload": {
     "psr-0": {
       "Kronhyx\\BaseBundle": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.0"
     }
   }
 }
