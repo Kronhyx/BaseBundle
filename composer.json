@@ -1,0 +1,35 @@
+{
+  "name": "kronhyx/basebundle",
+  "type": "symfony-bundle",
+  "description": "Custom symfony functions",
+  "keywords": [
+    "symfony",
+    "php",
+    "framework",
+    "bundle",
+    "performance",
+    "api"
+  ],
+  "homepage": "https://kronhyx.github.io/BaseBundle/",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Randy Téllez Galán",
+      "email": "kronhyx@gmail.com"
+    }
+  ],
+  "support": {
+    "email": "kronhyx@gmail.com",
+    "issues": "https://github.com/Kronhyx/BaseBundle/issues",
+    "docs": "https://kronhyx.github.io/BaseBundle/"
+  },
+  "require": {
+    "php": ">=5.6",
+    "symfony/framework-bundle": "^2.7"
+  },
+  "autoload": {
+    "psr-0": {
+      "Kronhyx\\BaseBundle": ""
+    }
+  }
+}
