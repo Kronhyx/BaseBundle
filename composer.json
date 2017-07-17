@@ -1,5 +1,5 @@
 {
-  "name": "kronhyx/basebundle",
+  "name": "kronhyx/base-bundle",
   "type": "symfony-bundle",
   "description": "Custom symfony functions",
   "keywords": [
