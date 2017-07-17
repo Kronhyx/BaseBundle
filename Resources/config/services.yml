@@ -1,6 +1,3 @@
-parameters:
-    bundle_name: 'BaseBundle'
-
 services:
 
     # default configuration for services in *this* file
@@ -16,22 +13,22 @@ services:
     # makes classes in src/%bundle_name% available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     Kronhyx\BaseBundle\:
-        resource: "../../../%bundle_name%/*"
-        exclude: "../../../%bundle_name%/{Entity,Repository,Tests,DependencyInjection,Twig}"
+        resource: "../../*"
+        exclude: "../../{Entity,Repository,Tests,DependencyInjection,Twig}"
         public: true
         autowire: true
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     Kronhyx\BaseBundle\Controller\:
-        resource: "../../../%bundle_name%/Controller"
+        resource: "../../Controller"
         public: true
         tags: ['controller.service_arguments']
         calls:
             - [setContainer, ['@service_container']]
 
     Kronhyx\BaseBundle\Twig\:
-        resource: "../../../%bundle_name%/Twig"
+        resource: "../../Twig"
         public: true
         tags:
             - { name: twig.extension }
