@@ -24,6 +24,7 @@
     "issues": "https://github.com/Kronhyx/BaseBundle/issues",
     "docs": "https://kronhyx.github.io/BaseBundle/"
   },
+  "minimum-stability": "stable",
   "require": {
     "php": ">=7",
     "symfony/framework-bundle":  ">=3.0.0"
