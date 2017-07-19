@@ -2,14 +2,16 @@
 
 namespace Kronhyx\BaseBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class MasterController
@@ -18,7 +20,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 class MasterController extends Controller
 {
     /**
-     * @var \Doctrine\ORM\EntityManager $manager
+     * @var EntityManagerInterface $manager
      */
     protected $manager;
 
@@ -43,9 +45,9 @@ class MasterController extends Controller
     protected $session;
 
     /**
-     * @var TokenInterface $token
+     * @var TokenStorageInterface $storage
      */
-    protected $token;
+    protected $storage;
 
     /**
      * @var Request $request
@@ -58,15 +60,14 @@ class MasterController extends Controller
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(EntityManagerInterface $manager, RouterInterface $router, EventDispatcherInterface $dispatcher, FormFactoryInterface $factory, SessionInterface $session, RequestStack $stack, TokenStorageInterface $storage)
     {
-        $this->container = $container;
-        $this->manager = $container->get('doctrine.orm.entity_manager');
-        $this->router = $container->get('router');
-        $this->dispatcher = $container->get('event_dispatcher');
-        $this->form = $container->get('form.factory');
-        $this->session = $container->get('session');
-        $this->request = $container->get('request_stack')->getCurrentRequest();
-        $this->token = $container->get('security.token_storage')->getToken();
+        $this->manager = $manager;
+        $this->router = $router;
+        $this->dispatcher = $dispatcher;
+        $this->form = $factory;
+        $this->session = $session;
+        $this->request = $stack->getCurrentRequest();
+        $this->storage = $storage;
     }
 }
