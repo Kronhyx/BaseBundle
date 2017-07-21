@@ -2,15 +2,14 @@
 
 namespace Kronhyx\BaseBundle\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * Class MasterController
@@ -19,14 +18,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class MasterController extends Controller
 {
     /**
-     * @var EntityManagerInterface $manager
+     * @var \Doctrine\ORM\EntityManager $manager
      */
     protected $manager;
 
     /**
-     * @var FormFactoryInterface $factory
+     * @var FormFactoryInterface $form
      */
-    protected $factory;
+    protected $form;
 
     /**
      * @var EventDispatcherInterface $dispatcher
@@ -44,9 +43,9 @@ class MasterController extends Controller
     protected $session;
 
     /**
-     * @var TokenStorageInterface $storage
+     * @var TokenInterface $token
      */
-    protected $storage;
+    protected $token;
 
     /**
      * @var Request $request
@@ -55,22 +54,19 @@ class MasterController extends Controller
 
     /**
      * MasterController constructor.
-     * @param EntityManagerInterface $manager
-     * @param RouterInterface $router
-     * @param EventDispatcherInterface $dispatcher
-     * @param FormFactoryInterface $factory
-     * @param SessionInterface $session
-     * @param RequestStack $stack
-     * @param TokenStorageInterface $storage
+     * @param ContainerInterface $container
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      */
-    public function __construct(EntityManagerInterface $manager, RouterInterface $router, EventDispatcherInterface $dispatcher, FormFactoryInterface $factory, SessionInterface $session, RequestStack $stack, TokenStorageInterface $storage)
+    public function __construct(ContainerInterface $container)
     {
-        $this->manager = $manager;
-        $this->router = $router;
-        $this->dispatcher = $dispatcher;
-        $this->form = $factory;
-        $this->session = $session;
-        $this->request = $stack->getCurrentRequest();
-        $this->storage = $storage;
+        $this->container = $container;
+        $this->manager = $container->get('doctrine.orm.entity_manager');
+        $this->router = $container->get('router');
+        $this->dispatcher = $container->get('event_dispatcher');
+        $this->form = $container->get('form.factory');
+        $this->session = $container->get('session');
+        $this->request = $container->get('request_stack')->getCurrentRequest();
+        $this->token = $container->get('security.token_storage')->getToken();
     }
 }
