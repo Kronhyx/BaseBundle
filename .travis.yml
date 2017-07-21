@@ -7,3 +7,6 @@ php:
   - 7.0
   # aliased to a recent 7.x version
   - 7.1
+env:
+  global:
+    - CI=true
