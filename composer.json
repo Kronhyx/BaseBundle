@@ -19,7 +19,8 @@
     "doctrine/orm": "^2.5",
     "symfony/framework-bundle": "^3.3",
     "symfony/security-core": "^3.3",
-    "symfony/form": "^3.3"
+    "symfony/form": "^3.3",
+    "knplabs/knp-menu-bundle": "^2.0",
   },
   "require-dev": {
   },
