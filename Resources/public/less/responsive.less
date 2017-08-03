@@ -42,6 +42,14 @@ File: Responsive
   }
   .topbar-left {
     width: 70px !important;
+
+    span {
+      display: none !important;
+    }
+    i {
+      display: block !important;
+      line-height: 75px !important;
+    }
   }
   .content-page .content {
     margin-top: 95px;
@@ -65,43 +73,6 @@ File: Responsive
   }
   .navbar-nav.navbar-right {
     float: right;
-  }
-  .notification-box {
-    display: inline;
-
-    ul {
-      li{
-        a{
-          line-height: 46px;
-        }
-      }
-    }
-
-    .pulse {
-      top: 5px;
-    }
-    .dot {
-      top: -7px;
-      left: -3px;
-    }
-  }
-  #topnav .navbar-toggle {
-    margin-right: 5px;
-  }
-  .navbar-nav {
-    .open {
-      .dropdown-menu {
-        background-color: @white;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
-        left: auto;
-        position: absolute;
-        right: 0;
-
-        li{
-          display: block;
-        }
-      }
-    }
   }
   .content-page {
     margin-left: 0px !important;
@@ -181,6 +152,15 @@ File: Responsive
   .topbar-left {
     width: 70px !important;
   }
+  .logo {
+    .icon-c-logo {
+      display: inline-block !important;
+      line-height: 58px !important;
+    }
+    span {
+      display: none !important;
+    }
+  }
   .content-page {
     margin-left: 70px;
   }
@@ -195,5 +175,5 @@ File: Responsive
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) !important;
     }
   }
-}
 
+}

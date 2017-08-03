@@ -16,6 +16,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 /**
  * Class MasterController
  * @package Kronhyx\BaseBundle\Controller
+ * @author Randy Téllez Galán <kronhyx@gmail.com>
  */
 class MasterController extends Controller
 {
@@ -53,27 +54,6 @@ class MasterController extends Controller
      * @var Request $request
      */
     protected $request;
-
-    /**
-     * MasterController constructor.
-     * @param EntityManagerInterface $manager
-     * @param RouterInterface $router
-     * @param EventDispatcherInterface $dispatcher
-     * @param FormFactoryInterface $factory
-     * @param SessionInterface $session
-     * @param RequestStack $stack
-     * @param TokenStorageInterface $storage
-     */
-    public function __construct(EntityManagerInterface $manager, RouterInterface $router, EventDispatcherInterface $dispatcher, FormFactoryInterface $factory, SessionInterface $session, RequestStack $stack, TokenStorageInterface $storage)
-    {
-        $this->manager = $manager;
-        $this->router = $router;
-        $this->dispatcher = $dispatcher;
-        $this->form = $factory;
-        $this->session = $session;
-        $this->request = $stack->getCurrentRequest();
-        $this->storage = $storage;
-    }
 
     /**
      * @param EntityManagerInterface $manager
