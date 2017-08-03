@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * Class MasterController
@@ -75,4 +74,75 @@ class MasterController extends Controller
         $this->request = $stack->getCurrentRequest();
         $this->storage = $storage;
     }
+
+    /**
+     * @param EntityManagerInterface $manager
+     * @return MasterController
+     */
+    public function setManager(EntityManagerInterface $manager): MasterController
+    {
+        $this->manager = $manager;
+        return $this;
+    }
+
+    /**
+     * @param FormFactoryInterface $form
+     * @return MasterController
+     */
+    public function setForm(FormFactoryInterface $form): MasterController
+    {
+        $this->form = $form;
+        return $this;
+    }
+
+    /**
+     * @param EventDispatcherInterface $dispatcher
+     * @return MasterController
+     */
+    public function setDispatcher(EventDispatcherInterface $dispatcher): MasterController
+    {
+        $this->dispatcher = $dispatcher;
+        return $this;
+    }
+
+    /**
+     * @param RouterInterface $router
+     * @return MasterController
+     */
+    public function setRouter(RouterInterface $router): MasterController
+    {
+        $this->router = $router;
+        return $this;
+    }
+
+    /**
+     * @param Session $session
+     * @return MasterController
+     */
+    public function setSession(Session $session): MasterController
+    {
+        $this->session = $session;
+        return $this;
+    }
+
+    /**
+     * @param TokenStorageInterface $storage
+     * @return MasterController
+     */
+    public function setStorage(TokenStorageInterface $storage): MasterController
+    {
+        $this->storage = $storage;
+        return $this;
+    }
+
+    /**
+     * @param RequestStack $stack
+     * @return MasterController
+     */
+    public function setRequest(RequestStack $stack): MasterController
+    {
+        $this->request = $stack->getCurrentRequest();
+        return $this;
+    }
+
 }

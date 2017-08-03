@@ -1,0 +1,58 @@
+function TimeFix() {
+
+    var getAgoTime = function (milliseconds) {
+        var current_time_milliseconds = new Date().getTime();
+
+        function numberEnding(number) {
+            return (number > 1) ? 's' : '';
+        }
+
+        milliseconds = current_time_milliseconds - milliseconds;
+        var temp = Math.floor(milliseconds / 1000);
+        var years = Math.floor(temp / 31536000);
+        if (years) {
+            return years + ' año' + numberEnding(years);
+        }
+        var days = Math.floor((temp %= 31536000) / 86400);
+        if (days) {
+            return days + ' día' + numberEnding(days);
+        }
+        var hours = Math.floor((temp %= 86400) / 3600);
+        if (hours) {
+            return hours + ' hora' + numberEnding(hours);
+        }
+        var minutes = Math.floor((temp %= 3600) / 60);
+        if (minutes) {
+            return minutes + ' min' + numberEnding(minutes);
+        }
+        var seconds = temp % 60;
+        if (seconds) {
+            return seconds + ' seg' + numberEnding(seconds);
+        }
+        return 'ahora';
+
+    };
+
+    var fixTimeStamp = function () {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-kronhyx-timestamp]'), function (timestamp) {
+            timestamp.textContent = getAgoTime(parseInt(timestamp.getAttribute("data-kronhyx-timestamp")) * 1000);
+        });
+    }
+
+    var fixDateStamp = function () {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-kronhyx-datestamp]'), function (datestamp) {
+            var date = new Date(parseInt(datestamp.getAttribute("data-kronhyx-datestamp")) * 1000)
+            datestamp.textContent = date.toLocaleString('es-ES');
+        });
+    }
+
+
+    var fixer = function () {
+        fixDateStamp();
+        fixTimeStamp();
+        setTimeout(fixer, 100);
+    }
+    return fixer();
+}
+
+new TimeFix();

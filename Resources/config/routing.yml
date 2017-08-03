@@ -1,4 +1,4 @@
-config:
-    resource: "@ConfigBundle/Controller/"
+base:
+    resource: "@KronhyxBaseBundle/Controller"
     type:     annotation
-    prefix:   /
+    prefix:   /kronhyx/base/

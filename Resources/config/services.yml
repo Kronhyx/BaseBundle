@@ -10,16 +10,23 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
-    # makes classes in src/%bundle_name% available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     Kronhyx\BaseBundle\:
         resource: "../../*"
         exclude: "../../{Entity,Repository,Tests,DependencyInjection,Twig}"
         public: true
         autowire: true
 
-    # controllers are imported separately to make sure they're public
-    # and have a tag that allows actions to type-hint services
+    Kronhyx\BaseBundle\MasterController:
+        public: true
+        calls:
+            - [setRequest, ['@Symfony\Component\HttpFoundation\RequestStack']]
+            - [setDispatcher, ['@Symfony\Component\EventDispatcher\EventDispatcherInterface']]
+            - [setStorage, ['@Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface']]
+            - [setSession, ['@Symfony\Component\HttpFoundation\Session\SessionInterface']]
+            - [setForm, ['@Symfony\Component\Form\FormFactoryInterface']]
+            - [setManager, ['@Doctrine\ORM\EntityManagerInterface']]
+            - [setRouter, ['@router']]
+
     Kronhyx\BaseBundle\Controller\:
         resource: "../../Controller"
         public: true
