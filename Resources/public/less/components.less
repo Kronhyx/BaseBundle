@@ -1,7 +1,6 @@
 @import "variables.less";
 @import "elements.less";
 
-
 /*
 Template Name: Adminto Dashboard
 Author: CoderThemes
@@ -30,24 +29,30 @@ File: Components
   border-radius: 2px;
   padding: 6px 14px;
 }
-.btn-group-lg>.btn, .btn-lg {
+
+.btn-group-lg > .btn, .btn-lg {
   padding: 10px 16px !important;
   font-size: 16px;
 }
-.btn-group-sm>.btn, .btn-sm {
+
+.btn-group-sm > .btn, .btn-sm {
   padding: 5px 10px !important;
 }
-.btn-group-xs>.btn, .btn-xs {
+
+.btn-group-xs > .btn, .btn-xs {
   padding: 1px 5px !important;
 }
-.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
-  margin-left: 0px;
+
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  margin-left: 0;
 }
+
 .btn-group.open .dropdown-toggle {
-  -webkit-box-shadow: 0 0 0 100px rgba(0,0,0,.1) inset;
-  box-shadow: 0 0 0 100px rgba(0,0,0,.1) inset;
+  -webkit-box-shadow: 0 0 0 100px rgba(0, 0, 0, .1) inset;
+  box-shadow: 0 0 0 100px rgba(0, 0, 0, .1) inset;
 }
-.btn-custom,.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger, .btn-inverse, .btn-purple, .btn-pink {
+
+.btn-custom, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger, .btn-inverse, .btn-purple, .btn-pink {
   color: @white !important;
 }
 
@@ -55,9 +60,10 @@ File: Components
   background-color: @custom;
   border-color: @custom;
 }
+
 .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active,
 .btn-custom.focus, .btn-custom:active, .btn-custom:focus, .btn-custom:hover,
-.open > .dropdown-toggle.btn-custom  {
+.open > .dropdown-toggle.btn-custom {
   background-color: darken(@custom, 5%) !important;
   border: 1px solid darken(@custom, 5%) !important;
 }
@@ -66,20 +72,22 @@ File: Components
   background-color: @default;
   border-color: @default;
 }
+
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active,
 .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover,
-.open > .dropdown-toggle.btn-default  {
+.open > .dropdown-toggle.btn-default {
   background-color: fade(@default, 70%) !important;
   border: 1px solid fade(@default, 90%) !important;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: @primary !important;
   border: 1px solid @primary !important;
 }
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active,
 .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
-.open > .dropdown-toggle.btn-primary  {
+.open > .dropdown-toggle.btn-primary {
   background-color: darken(@primary, 5%) !important;
   border: 1px solid darken(@primary, 5%) !important;
 }
@@ -88,6 +96,7 @@ File: Components
   background-color: @success !important;
   border: 1px solid @success !important;
 }
+
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .dropdown-toggle.btn-success {
   background-color: darken(@success, 5%) !important;
   border: 1px solid darken(@success, 5%) !important;
@@ -97,6 +106,7 @@ File: Components
   background-color: @info !important;
   border: 1px solid @info !important;
 }
+
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open > .dropdown-toggle.btn-info {
   background-color: darken(@info, 5%) !important;
   border: 1px solid darken(@info, 5%) !important;
@@ -106,6 +116,7 @@ File: Components
   background-color: @warning !important;
   border: 1px solid @warning !important;
 }
+
 .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.focus, .btn-warning:active, .btn-warning:focus, .btn-warning:hover, .open > .dropdown-toggle.btn-warning {
   background-color: darken(@warning, 5%) !important;
   border: 1px solid darken(@warning, 5%) !important;
@@ -115,6 +126,7 @@ File: Components
   background-color: @danger !important;
   border: 1px solid @danger !important;
 }
+
 .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .btn-danger.active, .btn-danger.focus, .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .open > .dropdown-toggle.btn-danger {
   background-color: darken(@danger, 5%) !important;
   border: 1px solid darken(@danger, 5%) !important;
@@ -124,6 +136,7 @@ File: Components
   background-color: @inverse !important;
   border: 1px solid @inverse !important;
 }
+
 .btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active, .btn-inverse.focus, .btn-inverse:active, .btn-inverse:focus, .btn-inverse:hover, .open > .dropdown-toggle.btn-inverse {
   background-color: darken(@inverse, 5%) !important;
   border: 1px solid darken(@inverse, 5%) !important;
@@ -133,6 +146,7 @@ File: Components
   background-color: @purple !important;
   border: 1px solid @purple !important;
 }
+
 .btn-purple:hover, .btn-purple:focus, .btn-purple:active {
   background-color: darken(@purple, 5%) !important;
   border: 1px solid darken(@purple, 5%) !important;
@@ -142,11 +156,11 @@ File: Components
   background-color: @pink !important;
   border: 1px solid @pink !important;
 }
+
 .btn-pink:hover, .btn-pink:focus, .btn-pink:active {
   background-color: darken(@pink, 5%) !important;
   border: 1px solid darken(@pink, 5%) !important;
 }
-
 
 .btn-bordred {
   border-bottom: 3px solid transparent;
@@ -156,6 +170,7 @@ File: Components
   background-color: @default;
   border-bottom: 2px solid darken(@default, 7%) !important;
 }
+
 .btn-bordred.btn-custom {
   background-color: @custom;
   border-bottom: 2px solid darken(@custom, 7%) !important;
@@ -263,6 +278,7 @@ File: Components
   overflow: hidden;
   position: relative;
 }
+
 .fileupload input.upload {
   cursor: pointer;
   filter: alpha(opacity=0);
@@ -274,7 +290,6 @@ File: Components
   right: 0;
   top: 0;
 }
-
 
 /* =============
    Checkbox and Radios
@@ -558,7 +573,6 @@ File: Components
   }
 }
 
-
 .radio-custom {
   input[type="radio"] + label {
     &::after {
@@ -687,23 +701,20 @@ File: Components
   }
 }
 
-
-
-
 /* =============
    Panels
 ============= */
 
 .panel {
   border: none;
-  background-color: darken(@dark,10%);
+  background-color: darken(@dark, 10%);
   margin-bottom: 20px;
-  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
 
   .panel-body {
     padding: 20px;
     p {
-      margin: 0px;
+      margin: 0;
     }
     p + p {
       margin-top: 15px;
@@ -719,7 +730,7 @@ File: Components
 .panel-default > .panel-heading {
   border-bottom: none;
   color: @muted;
-  background-color: darken(@dark,15%);
+  background-color: darken(@dark, 15%);
 }
 
 .panel-title {
@@ -730,7 +741,7 @@ File: Components
 
 .panel-footer {
   background: @lightdark;
-  border-top: 0px;
+  border-top: 0;
 }
 
 .panel-color {
@@ -775,12 +786,10 @@ File: Components
   background-color: @inverse;
 }
 
-
-
 .panel-border .panel-heading {
   background-color: transparent;
   border-top: 3px solid #DADFE2 !important;
-  padding: 10px 20px 0px;
+  padding: 10px 20px 0;
 }
 
 .panel-border .panel-body {
@@ -832,7 +841,6 @@ File: Components
   color: @inverse !important;
 }
 
-
 .panel-group {
   .panel {
     .panel-heading {
@@ -873,7 +881,7 @@ File: Components
     }
     .panel-heading + .panel-collapse {
       .panel-body {
-        border: 1px solid fade(@white,10%);
+        border: 1px solid fade(@white, 10%);
         border-top: none;
       }
     }
@@ -885,7 +893,7 @@ File: Components
 
 .panel-group.panel-group-joined {
   .panel + .panel {
-    border-top: 1px solid fade(@white,10%);
+    border-top: 1px solid fade(@white, 10%);
     margin-top: 0;
   }
 }
@@ -899,29 +907,28 @@ File: Components
   }
 }
 
-
 /* Panel tabs */
 .panel-tabs {
   .nav-pills {
     li {
-      a{
+      a {
         background-color: transparent !important;
         font-weight: 500;
         border: none !important;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
         color: @white !important;
       }
     }
     li.active {
       a {
-        background-color: darken(@dark,10%) !important;
+        background-color: darken(@dark, 10%) !important;
         color: @white !important;
       }
     }
   }
   .tab-content {
-    padding: 0px;
+    padding: 0;
     border: none;
   }
 }
@@ -930,7 +937,7 @@ File: Components
 .card-tabs {
   .nav-pills {
     li {
-      a{
+      a {
         padding: 8px 14px;
         font-size: 13px;
         background-color: transparent !important;
@@ -947,7 +954,7 @@ File: Components
     }
   }
   .tab-content {
-    padding: 0px;
+    padding: 0;
     border: none;
   }
 }
@@ -957,13 +964,13 @@ File: Components
 ============= */
 
 .portlet {
-  background-color: darken(@dark,10%);
-  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+  background-color: darken(@dark, 10%);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
   .border-radius(5px);
   -webkit-transition: 1s ease-in-out;
-    -moz-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
-    transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
   margin-bottom: 20px;
 
   .portlet-heading {
@@ -994,14 +1001,14 @@ File: Components
       .collapsed {
         .zmdi-minus {
           &:before {
-             content: "\f278" !important;
+            content: "\f278" !important;
           }
         }
       }
     }
     a {
       color: @white;
-      padding: 0px 5px;
+      padding: 0 5px;
     }
   }
   .portlet-body {
@@ -1009,13 +1016,12 @@ File: Components
     -moz-border-radius-bottomright: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
-    background-color: darken(@dark,10%);
+    background-color: darken(@dark, 10%);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 15px;
   }
 }
-
 
 .panel-disabled {
   background: rgba(33, 33, 33, 0.5);
@@ -1041,13 +1047,9 @@ File: Components
   margin-top: -15px;
 }
 
-
-
-
 /* =============
    Progressbars
 ============= */
-
 
 /* =============
    Progressbars
@@ -1055,7 +1057,7 @@ File: Components
 
 .progress {
   -webkit-box-shadow: none !important;
-  background-color: fade(@light5,20%);
+  background-color: fade(@light5, 20%);
   box-shadow: none !important;
   height: 10px;
   margin-bottom: 18px;
@@ -1124,37 +1126,46 @@ File: Components
 .progress-bar-pink {
   background-color: @pink;
 }
+
 .progress-bar-custom {
   background-color: @custom;
 }
 
 /* Custom progressbars */
 .progress-bar-custom-alt {
-  background-color: fade(@custom,20%);
+  background-color: fade(@custom, 20%);
 }
+
 .progress-bar-primary-alt {
-  background-color: fade(@primary,20%);
+  background-color: fade(@primary, 20%);
 }
+
 .progress-bar-success-alt {
-  background-color: fade(@success,20%);
+  background-color: fade(@success, 20%);
 }
+
 .progress-bar-info-alt {
-  background-color: fade(@info,20%);
+  background-color: fade(@info, 20%);
 }
+
 .progress-bar-warning-alt {
-  background-color: fade(@warning,20%);
+  background-color: fade(@warning, 20%);
 }
+
 .progress-bar-danger-alt {
-  background-color: fade(@danger,20%);
+  background-color: fade(@danger, 20%);
 }
+
 .progress-bar-purple-alt {
-  background-color: fade(@purple,20%);
+  background-color: fade(@purple, 20%);
 }
+
 .progress-bar-inverse-alt {
-  background-color: fade(@inverse,20%);
+  background-color: fade(@inverse, 20%);
 }
+
 .progress-bar-pink-alt {
-  background-color: fade(@pink,20%);
+  background-color: fade(@pink, 20%);
 }
 
 .progress-animated {
@@ -1168,35 +1179,36 @@ File: Components
 
 /* Progressbar Vertical */
 .progress-vertical {
-    min-height: 250px;
-    height: 250px;
-    width: 10px;
-    position: relative;
-    display: inline-block;
-    margin-bottom: 0;
-    margin-right: 20px;
+  min-height: 250px;
+  height: 250px;
+  width: 10px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 20px;
 
-    .progress-bar {
-      width: 100%;
-   }
-}
-.progress-vertical-bottom{
-    min-height: 250px;
-    height: 250px;
-    position: relative;
-    width: 10px;
-    display: inline-block;
-    margin-bottom: 0;
-    margin-right: 20px;
-
-    .progress-bar {
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-   }
+  .progress-bar {
+    width: 100%;
+  }
 }
 
-.progress-vertical.progress-sm,.progress-vertical-bottom.progress-sm {
+.progress-vertical-bottom {
+  min-height: 250px;
+  height: 250px;
+  position: relative;
+  width: 10px;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 20px;
+
+  .progress-bar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.progress-vertical.progress-sm, .progress-vertical-bottom.progress-sm {
   width: 5px !important;
   .progress-bar {
     font-size: 8px;
@@ -1204,7 +1216,7 @@ File: Components
   }
 }
 
-.progress-vertical.progress-md,.progress-vertical-bottom.progress-md {
+.progress-vertical.progress-md, .progress-vertical-bottom.progress-md {
   width: 15px !important;
   .progress-bar {
     font-size: 10.8px;
@@ -1212,15 +1224,13 @@ File: Components
   }
 }
 
-.progress-vertical.progress-lg,.progress-vertical-bottom.progress-lg {
+.progress-vertical.progress-lg, .progress-vertical-bottom.progress-lg {
   width: 20px !important;
   .progress-bar {
     font-size: 12px;
     line-height: 20px;
   }
 }
-
-
 
 /* =============
    Tables
@@ -1229,6 +1239,7 @@ File: Components
 .table {
   margin-bottom: 10px;
 }
+
 tbody {
   color: @muted;
 }
@@ -1237,61 +1248,67 @@ th {
   color: @light;
   font-weight: 600;
 }
+
 .table > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 2px solid fade(@white,15%);
+  vertical-align: bottom;
+  border-bottom: 2px solid fade(@white, 15%);
 }
 
-.table-striped>tbody>tr:nth-of-type(odd),.table-hover > tbody > tr:hover,
+.table-striped > tbody > tr:nth-of-type(odd), .table-hover > tbody > tr:hover,
 .table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active,
 .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active,
 .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td,
 .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
-    background-color: fade(@white,10%) !important;
+  background-color: fade(@white, 10%) !important;
 }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th,
-.table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td ,
-.table > thead > tr > th, .table-bordered{
-    border-top: 1px solid fade(@white,10%);
+.table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td,
+.table > thead > tr > th, .table-bordered {
+  border-top: 1px solid fade(@white, 10%);
 }
+
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid fade(@white,10%);
+  border: 1px solid fade(@white, 10%);
 }
 
-.table>tbody>tr.success>td, .table>tbody>tr.success>th, .table>tbody>tr>td.success,
-.table>tbody>tr>th.success, .table>tfoot>tr.success>td, .table>tfoot>tr.success>th,
-.table>tfoot>tr>td.success, .table>tfoot>tr>th.success, .table>thead>tr.success>td,
-.table>thead>tr.success>th, .table>thead>tr>td.success, .table>thead>tr>th.success {
-  background-color: fade(@success,20%);
+.table > tbody > tr.success > td, .table > tbody > tr.success > th, .table > tbody > tr > td.success,
+.table > tbody > tr > th.success, .table > tfoot > tr.success > td, .table > tfoot > tr.success > th,
+.table > tfoot > tr > td.success, .table > tfoot > tr > th.success, .table > thead > tr.success > td,
+.table > thead > tr.success > th, .table > thead > tr > td.success, .table > thead > tr > th.success {
+  background-color: fade(@success, 20%);
 }
-.table>tbody>tr.info>td, .table>tbody>tr.info>th, .table>tbody>tr>td.info,
-.table>tbody>tr>th.info, .table>tfoot>tr.info>td, .table>tfoot>tr.info>th,
-.table>tfoot>tr>td.info, .table>tfoot>tr>th.info, .table>thead>tr.info>td,
-.table>thead>tr.info>th, .table>thead>tr>td.info, .table>thead>tr>th.info{
-  background-color: fade(@info,20%);
+
+.table > tbody > tr.info > td, .table > tbody > tr.info > th, .table > tbody > tr > td.info,
+.table > tbody > tr > th.info, .table > tfoot > tr.info > td, .table > tfoot > tr.info > th,
+.table > tfoot > tr > td.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td,
+.table > thead > tr.info > th, .table > thead > tr > td.info, .table > thead > tr > th.info {
+  background-color: fade(@info, 20%);
 }
-.table>tbody>tr.warning>td, .table>tbody>tr.warning>th, .table>tbody>tr>td.warning,
-.table>tbody>tr>th.warning, .table>tfoot>tr.warning>td, .table>tfoot>tr.warning>th,
-.table>tfoot>tr>td.warning, .table>tfoot>tr>th.warning, .table>thead>tr.warning>td,
-.table>thead>tr.warning>th, .table>thead>tr>td.warning, .table>thead>tr>th.warning {
-  background-color: fade(@warning,20%);
+
+.table > tbody > tr.warning > td, .table > tbody > tr.warning > th, .table > tbody > tr > td.warning,
+.table > tbody > tr > th.warning, .table > tfoot > tr.warning > td, .table > tfoot > tr.warning > th,
+.table > tfoot > tr > td.warning, .table > tfoot > tr > th.warning, .table > thead > tr.warning > td,
+.table > thead > tr.warning > th, .table > thead > tr > td.warning, .table > thead > tr > th.warning {
+  background-color: fade(@warning, 20%);
 }
-.table>tbody>tr.danger>td, .table>tbody>tr.danger>th, .table>tbody>tr>td.danger,
-.table>tbody>tr>th.danger, .table>tfoot>tr.danger>td, .table>tfoot>tr.danger>th,
-.table>tfoot>tr>td.danger, .table>tfoot>tr>th.danger, .table>thead>tr.danger>td,
-.table>thead>tr.danger>th, .table>thead>tr>td.danger, .table>thead>tr>th.danger {
-  background-color: fade(@danger,20%);
+
+.table > tbody > tr.danger > td, .table > tbody > tr.danger > th, .table > tbody > tr > td.danger,
+.table > tbody > tr > th.danger, .table > tfoot > tr.danger > td, .table > tfoot > tr.danger > th,
+.table > tfoot > tr > td.danger, .table > tfoot > tr > th.danger, .table > thead > tr.danger > td,
+.table > thead > tr.danger > th, .table > thead > tr > td.danger, .table > thead > tr > th.danger {
+  background-color: fade(@danger, 20%);
 }
 
 .table-bordered {
-    border: 1px solid fade(@white,10%);
+  border: 1px solid fade(@white, 10%);
 }
+
 table.focus-on {
   tbody {
     tr.focused {
@@ -1306,15 +1323,18 @@ table.focus-on {
     }
   }
 }
+
 div.DTS tbody tr.odd {
   background-color: #435159 !important;
 }
+
 div.DTS tbody tr.even {
-  background-color: darken(@dark,10%);
+  background-color: darken(@dark, 10%);
 }
+
 .dataTables_scrollBody {
   table {
-    border-left:none !important;
+    border-left: none !important;
   }
 }
 
@@ -1327,13 +1347,13 @@ div.DTS tbody tr.even {
     border-color: fade(@light, 30%);
   }
 }
+
 .fixedHeader-floating {
   top: 70px !important;
 }
 
-
 .fixed-table-container tbody .selected td {
-    background-color: @lightdark;
+  background-color: @lightdark;
 }
 
 .modal-block {
@@ -1344,7 +1364,6 @@ div.DTS tbody tr.even {
   position: relative;
   text-align: left;
 }
-
 
 /* editable table */
 #datatable-editable {
@@ -1377,6 +1396,7 @@ div.DTS tbody tr.even {
     font-weight: normal;
   }
 }
+
 .paginate_button {
   display: inline-block !important;
 }
@@ -1394,17 +1414,20 @@ div.dataTables_info {
 .dt-buttons {
   float: left;
 }
+
 div#datatable-buttons_info {
   float: left;
 }
+
 /* Responsive data table */
-table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
-table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before{
-    box-shadow: 0 0 3px fade(@dark,20%);
-    background-color: @primary;
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+  box-shadow: 0 0 3px fade(@dark, 20%);
+  background-color: @primary;
 }
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
+
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
   background-color: @danger;
 }
 
@@ -1413,8 +1436,6 @@ table.dataTable th.focus, table.dataTable td.focus {
   outline: 3px solid @custom !important;
   outline-offset: -1px
 }
-
-
 
 /* =============
    Widgets
@@ -1452,7 +1473,7 @@ table.dataTable th.focus, table.dataTable td.focus {
   .wid-u-info {
     margin-left: 90px;
 
-    p,h4 {
+    p, h4 {
       white-space: nowrap;
       display: block;
       overflow: hidden;
@@ -1464,28 +1485,27 @@ table.dataTable th.focus, table.dataTable td.focus {
 /* Team list */
 .team-list {
   .name {
-    color: fade(@white,50%) !important;
+    color: fade(@white, 50%) !important;
   }
   .list-group-item {
     border: none;
-    border-bottom: 1px solid fade(@white,10%);
+    border-bottom: 1px solid fade(@white, 10%);
     &:first-child {
       border-top: none;
       .border-radius(0px);
     }
 
     &:hover {
-      background-color: fade(@white,5%) !important;
+      background-color: fade(@white, 5%) !important;
     }
   }
 }
-
 
 /* Inbox-widget */
 
 .inbox-widget {
   .inbox-item {
-    border-bottom: 1px solid fade(@white,10%);
+    border-bottom: 1px solid fade(@white, 10%);
     overflow: hidden;
     padding: 10px 0;
     position: relative;
@@ -1499,7 +1519,7 @@ table.dataTable th.focus, table.dataTable td.focus {
       width: 40px;
     }
     .inbox-item-author {
-      color: fade(@white,70%);
+      color: fade(@white, 70%);
       display: block;
       margin: 0;
     }
