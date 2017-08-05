@@ -12,6 +12,7 @@ use AppBundle\Controller\AdminController;
 use Knp\Menu\MenuFactory;
 use Knp\Menu\MenuItem;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class MenuBase
@@ -19,6 +20,10 @@ use Symfony\Component\EventDispatcher\Event;
  */
 abstract class MenuBase implements MenuBaseInterface
 {
+    /**
+     * @var RouterInterface $router
+     */
+    protected $router;
 
     /**
      * @return array
@@ -45,11 +50,16 @@ abstract class MenuBase implements MenuBaseInterface
          */
         /** @noinspection PhpUndefinedFieldInspection */
         $menu = $event->menu;
+
         /** @noinspection PhpUndefinedFieldInspection */
         $factory = $event->provider;
+
         $reflection = new \ReflectionClass($this);
 
         $item = new MenuItem($reflection->name, $factory);
+
+        /** @noinspection PhpUndefinedFieldInspection */
+        $this->setRouter($event->router);
 
         $item
             ->setLabel(\explode('\\', $reflection->name)[1])
@@ -71,6 +81,14 @@ abstract class MenuBase implements MenuBaseInterface
         $menu->addChild($item);
 
         return $event;
+    }
+
+    /**
+     * @param RouterInterface $router
+     */
+    public function setRouter(RouterInterface $router)
+    {
+        $this->router = $router;
     }
 
 }

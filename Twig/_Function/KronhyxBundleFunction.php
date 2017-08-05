@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class DateTimeExtension
@@ -46,14 +47,19 @@ class KronhyxBundleFunction extends \Twig_Extension
     private $request;
 
     /**
-     * @var
+     * @var array $menu
      */
     private $menu;
 
     /**
-     * @var
+     * @var array $form
      */
     private $form;
+
+    /**
+     * @var RouterInterface $router
+     */
+    private $router;
 
     /**
      * KronhyxBundleFunction constructor.
@@ -61,13 +67,15 @@ class KronhyxBundleFunction extends \Twig_Extension
      * @param MenuFactory $factory
      * @param FormFactoryInterface $formFactory
      * @param RequestStack $stack
+     * @param RouterInterface $router
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
-    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory, RequestStack $stack)
+    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory, RequestStack $stack, RouterInterface $router)
     {
         $this->factory = $factory;
         $this->dispatcher = $dispatcher;
         $this->formFactory = $formFactory;
+        $this->router = $router;
         $this->request = $stack->getCurrentRequest();
 
         //Initialize Methods
@@ -111,6 +119,9 @@ class KronhyxBundleFunction extends \Twig_Extension
 
         /** @noinspection PhpUndefinedFieldInspection */
         $sidebar->provider = $this->factory;
+
+        /** @noinspection PhpUndefinedFieldInspection */
+        $sidebar->router = $this->router;
 
         /** @noinspection PhpUndefinedFieldInspection */
         $sidebar->menu = $this->factory->createItem('sidebar');
