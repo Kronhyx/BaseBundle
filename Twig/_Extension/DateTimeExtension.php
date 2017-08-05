@@ -37,7 +37,7 @@ class DateTimeExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        $functions = new ArrayCollection(parent::getFilters());
+        $functions = new ArrayCollection(parent::getFunctions());
 
         $functions->add(new \Twig_SimpleFunction('kronhyx_timeAgo', [
             $this, 'timeAgo'

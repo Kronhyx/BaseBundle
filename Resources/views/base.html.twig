@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% form_theme form 'EasyAdminBundle:form:bootstrap_3_horizontal_layout.html.twig' %}
+    {% form_theme KronhyxBundle().form.search 'EasyAdminBundle:form:bootstrap_3_horizontal_layout.html.twig' %}
 
     <!DOCTYPE html>
     <html>
@@ -87,7 +87,7 @@
                         </li>
                         <li class="hidden-xs">
                             <form role="search" class="app-search">
-                                {{ form_widget(form.word) }}
+                                {{ form_widget(KronhyxBundle().form.search.word) }}
                                 <a href="">
                                     <i class="fa fa-search">&nbsp;</i>
                                 </a>
@@ -107,7 +107,7 @@
                 <!--- Sidebar -->
                 <div id="sidebar-menu">
                     <ul>
-                        {% for menu in sidebar %}
+                        {% for menu in KronhyxBundle().menu.sidebar %}
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect">
                                     {% if menu.attributes.icon is defined %}

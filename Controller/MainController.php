@@ -9,9 +9,7 @@
 namespace Kronhyx\BaseBundle\Controller;
 
 use Kronhyx\BaseBundle\Base\ControllerBase;
-use Kronhyx\BaseBundle\Form\Type\SearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -34,21 +32,8 @@ class MainController extends ControllerBase
      */
     public function dashboardAction(Request $request)
     {
-        $event = new Event();
 
-        $event->provider = $this->get('knp_menu.factory');
-        $event->menu = $this->get('knp_menu.factory')->createItem('sidebar');
-
-        $this->dispatcher->dispatch('kronhyx.base.menu.dispatch', $event);
-
-        $form = $this->form->create(SearchType::class);
-
-        $form->handleRequest($request);
-
-        return [
-            'sidebar' => $event->menu,
-            'form' => $form->createView()
-        ];
+        return [];
 
     }
 
