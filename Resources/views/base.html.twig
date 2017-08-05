@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% form_theme KronhyxBundle().form.search 'EasyAdminBundle:form:bootstrap_3_horizontal_layout.html.twig' %}
+    {% form_theme KronhyxBundle().form.search 'KronhyxBaseBundle::form.html.twig' %}
 
     <!DOCTYPE html>
     <html>
@@ -86,12 +86,17 @@
                             <!-- End Notification bar -->
                         </li>
                         <li class="hidden-xs">
-                            <form role="search" class="app-search">
-                                {{ form_widget(KronhyxBundle().form.search.word) }}
-                                <a href="">
+                            {{ form_start(KronhyxBundle().form.search,{attr:{
+                                role:'search',
+                                class:'app-search',
+                            }}) }}
+                            {{ form_widget(KronhyxBundle().form.search.word) }}
+                            <a>
+                                <button style="background: rgba(255, 255, 255, 0);border: rgba(255, 255, 255, 0);left: 18px;position: relative;">
                                     <i class="fa fa-search">&nbsp;</i>
-                                </a>
-                            </form>
+                                </button>
+                            </a>
+                            {{ form_end(KronhyxBundle().form.search) }}
                         </li>
                     </ul>
 

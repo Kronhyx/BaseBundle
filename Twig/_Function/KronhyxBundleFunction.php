@@ -36,9 +36,9 @@ class KronhyxBundleFunction extends \Twig_Extension
     private $dispatcher;
 
     /**
-     * @var FormFactoryInterface $form
+     * @var FormFactoryInterface $formFactory
      */
-    private $form;
+    private $formFactory;
 
     /**
      * @var null|Request $request
@@ -46,18 +46,33 @@ class KronhyxBundleFunction extends \Twig_Extension
     private $request;
 
     /**
+     * @var
+     */
+    private $menu;
+
+    /**
+     * @var
+     */
+    private $form;
+
+    /**
      * KronhyxBundleFunction constructor.
      * @param EventDispatcherInterface $dispatcher
      * @param MenuFactory $factory
-     * @param FormFactoryInterface $form
+     * @param FormFactoryInterface $formFactory
      * @param RequestStack $stack
+     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
-    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $form, RequestStack $stack)
+    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory, RequestStack $stack)
     {
         $this->factory = $factory;
         $this->dispatcher = $dispatcher;
-        $this->form = $form;
+        $this->formFactory = $formFactory;
         $this->request = $stack->getCurrentRequest();
+
+        //Initialize Methods
+        $this->getMenu();
+        $this->getForm();
     }
 
     /**
@@ -80,14 +95,15 @@ class KronhyxBundleFunction extends \Twig_Extension
      */
     public function KronhyxBundle()
     {
+
         return [
-            'menu' => $this->getMenu(),
-            'form' => $this->getForm()
+            'menu' => $this->menu,
+            'form' => $this->form
         ];
     }
 
     /**
-     * @return array
+     * @return KronhyxBundleFunction
      */
     private function getMenu()
     {
@@ -101,21 +117,24 @@ class KronhyxBundleFunction extends \Twig_Extension
 
         $this->dispatcher->dispatch('kronhyx.base.menu.dispatch', $sidebar);
 
+
         /** @noinspection PhpUndefinedFieldInspection */
-        return [
+        $this->menu = [
             'sidebar' => $sidebar->menu
         ];
+
+        return $this;
     }
 
 
     /**
-     * @return array
+     * @return KronhyxBundleFunction
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
     private function getForm()
     {
         $form = [
-            'search' => $this->form->create(SearchType::class)
+            'search' => $this->formFactory->create(SearchType::class)
         ];
 
         /**
@@ -125,7 +144,9 @@ class KronhyxBundleFunction extends \Twig_Extension
             $form[$name] = $item->handleRequest($this->request)->createView();
         }
 
-        return $form;
+        $this->form = $form;
+
+        return $this;
     }
 
 }

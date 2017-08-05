@@ -1,0 +1,6 @@
+kronhyx:
+  base:
+    label:
+      search: 'Buscar'
+    placeholder:
+          search: 'Buscar...'

@@ -46,7 +46,7 @@ File: Menu
 }
 
 .navbar-default .button-menu-mobile {
-    display: none;
+    /*display: none;*/
 }
 
 .logo {
@@ -728,6 +728,7 @@ File: Menu
 
 .app-search .form-control,
 .app-search .form-control:focus {
+    background-color: #243037;
     border: 1px solid rgba(152, 166, 173, 0.15);
     font-size: 13px;
     height: 34px;
@@ -737,7 +738,6 @@ File: Menu
     padding-right: 40px;
     margin-top: 18px;
     margin-left: 20px;
-    background: rgba(152, 166, 173, 0.1);
     box-shadow: none;
     border-radius: 30px;
     width: 190px;

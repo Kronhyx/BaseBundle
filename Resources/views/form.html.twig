@@ -1,0 +1,6 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{%- block widget_attributes -%}
+    {% set attr = attr|merge({'class': 'form-control'}) %}
+    {{ parent() }}
+{%- endblock widget_attributes -%}
