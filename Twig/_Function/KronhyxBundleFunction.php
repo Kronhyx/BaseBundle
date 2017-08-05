@@ -152,7 +152,10 @@ class KronhyxBundleFunction extends \Twig_Extension
          * @var FormInterface $item
          */
         foreach ($form as $name => $item) {
-            $form[$name] = $item->handleRequest($this->request)->createView();
+            if ($this->request instanceof Request) {
+                $item->handleRequest($this->request);
+            }
+            $form[$name] = $item->createView();
         }
 
         $this->form = $form;

@@ -6,8 +6,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @Route("base/")
+ *
  * Class MasterController
  * @package Kronhyx\BaseBundle\Controller
  * @author Randy Téllez Galán <kronhyx@gmail.com>
