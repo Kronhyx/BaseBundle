@@ -12,27 +12,6 @@ services:
 
     Kronhyx\BaseBundle\:
         resource: "../../*"
-        exclude: "../../{Entity,Repository,Tests,DependencyInjection,Twig}"
+        exclude: "../../{Entity,Repository,Tests,DependencyInjection}"
         public: true
         autowire: true
-
-    Kronhyx\BaseBundle\Controller\:
-        resource: "../../Controller"
-        public: true
-        tags: ['controller.service_arguments']
-        calls:
-            - [setContainer, ['@service_container']]
-
-    Kronhyx\BaseBundle\Menu\:
-        resource: "../../Menu"
-        public: true
-#        calls:
-#            - [setContainer, ['@service_container']]
-#        tags:
-#            - { name: kernel.event_listener, event: kronhyx.base.tree.add, method: onAdd }
-
-    Kronhyx\BaseBundle\Twig\:
-        resource: "../../Twig"
-        public: true
-        tags:
-            - { name: twig.extension }

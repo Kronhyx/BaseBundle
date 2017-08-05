@@ -1,4 +1,7 @@
 {% spaceless %}
+
+    {% form_theme form 'EasyAdminBundle:form:bootstrap_3_horizontal_layout.html.twig' %}
+
     <!DOCTYPE html>
     <html>
     <head>
@@ -22,6 +25,8 @@
         <link href="{{ asset('bundles/kronhyxbase/css/menu.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('bundles/kronhyxbase/css/responsive.css') }}" rel="stylesheet" type="text/css"/>
 
+        {% block stylesheets %}{% endblock %}
+
         <script src="{{ asset('bundles/kronhyxbase/js/modernizr.min.js') }}"></script>
 
     </head>
@@ -37,7 +42,12 @@
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="index.html" class="logo"><span>Admin<span>to</span></span><i class="zmdi zmdi-layers"></i></a>
+                <a href="{{ path('kronhyx_base_main_dashboard') }}" class="logo">
+                    <span>Kronhyx
+                        <span>Pack</span>
+                    </span>
+                    <i class="zmdi zmdi-layers">&nbsp;</i>
+                </a>
             </div>
 
             <!-- Button mobile view to collapse sidebar menu -->
@@ -52,7 +62,7 @@
                             </button>
                         </li>
                         <li>
-                            <h4 class="page-title">Blank Page</h4>
+                            <h4 class="page-title">{% block page_title %}{% endblock %}</h4>
                         </li>
                     </ul>
 
@@ -77,9 +87,10 @@
                         </li>
                         <li class="hidden-xs">
                             <form role="search" class="app-search">
-                                <input type="text" placeholder="Buscar..."
-                                       class="form-control">
-                                <a href=""><i class="fa fa-search"></i></a>
+                                {{ form_widget(form.word) }}
+                                <a href="">
+                                    <i class="fa fa-search">&nbsp;</i>
+                                </a>
                             </form>
                         </li>
                     </ul>
@@ -135,10 +146,9 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container">
-
-                    <div class="row">
-                        {% block body %}{% endblock %}
-                    </div>
+                    {% block body %}
+                        <div class="row"></div>
+                    {% endblock %}
                     <!-- End row -->
 
                 </div> <!-- container -->
@@ -234,11 +244,6 @@
     </div>
     <!-- END wrapper -->
 
-
-    <script>
-        var resizefunc = [];
-    </script>
-
     <!-- jQuery  -->
     <script src="{{ asset('bundles/easyadmin/javascript/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/easyadmin/javascript/bootstrap.min.js') }}"></script>
@@ -248,6 +253,9 @@
     <script src="{{ asset('bundles/kronhyxbase/js/waves.js') }}"></script>
     <script src="{{ asset('bundles/kronhyxbase/js/jquery.nicescroll.js') }}"></script>
     <script src="{{ asset('bundles/kronhyxbase/js/jquery.scrollTo.min.js') }}"></script>
+
+    <!-- Page js -->
+    {% block javascript %}{% endblock %}
 
     <!-- App js -->
     <script src="{{ asset('bundles/kronhyxbase/js/jquery.core.js') }}"></script>
