@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronhyx\BaseBundle\Controller;
+namespace Kronhyx\BaseBundle\Base;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,7 +9,6 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -18,7 +17,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * @package Kronhyx\BaseBundle\Controller
  * @author Randy Téllez Galán <kronhyx@gmail.com>
  */
-class MasterController extends Controller
+abstract class ControllerBase extends Controller
 {
     /**
      * @var EntityManagerInterface $manager

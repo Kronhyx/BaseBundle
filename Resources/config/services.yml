@@ -16,23 +16,20 @@ services:
         public: true
         autowire: true
 
-    Kronhyx\BaseBundle\MasterController:
-        public: true
-        calls:
-            - [setRequest, ['@Symfony\Component\HttpFoundation\RequestStack']]
-            - [setDispatcher, ['@Symfony\Component\EventDispatcher\EventDispatcherInterface']]
-            - [setStorage, ['@Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface']]
-            - [setSession, ['@Symfony\Component\HttpFoundation\Session\SessionInterface']]
-            - [setForm, ['@Symfony\Component\Form\FormFactoryInterface']]
-            - [setManager, ['@Doctrine\ORM\EntityManagerInterface']]
-            - [setRouter, ['@router']]
-
     Kronhyx\BaseBundle\Controller\:
         resource: "../../Controller"
         public: true
         tags: ['controller.service_arguments']
         calls:
             - [setContainer, ['@service_container']]
+
+    Kronhyx\BaseBundle\Menu\:
+        resource: "../../Menu"
+        public: true
+#        calls:
+#            - [setContainer, ['@service_container']]
+#        tags:
+#            - { name: kernel.event_listener, event: kronhyx.base.tree.add, method: onAdd }
 
     Kronhyx\BaseBundle\Twig\:
         resource: "../../Twig"
