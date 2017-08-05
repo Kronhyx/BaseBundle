@@ -43,13 +43,16 @@ abstract class MenuBase implements MenuBaseInterface
          * @var MenuItem $menu
          * @var MenuFactory $factory
          */
+        /** @noinspection PhpUndefinedFieldInspection */
         $menu = $event->menu;
+        /** @noinspection PhpUndefinedFieldInspection */
         $factory = $event->provider;
         $reflection = new \ReflectionClass($this);
 
         $item = new MenuItem($reflection->name, $factory);
+
         $item
-            ->setLabel($this->getLabel())
+            ->setLabel(\explode('\\', $reflection->name)[1])
             ->setUri(null)
             ->setAttributes([
                 'icon' => $this->getIcon()
@@ -60,6 +63,7 @@ abstract class MenuBase implements MenuBaseInterface
          */
         foreach ($reflection->getMethods() as $method) {
             if ($method->class !== self::class && $method->getNumberOfParameters() === 1) {
+                /** @noinspection PhpUndefinedFieldInspection */
                 $item->addChild($method->invoke($this, $event->provider));
             }
         }
