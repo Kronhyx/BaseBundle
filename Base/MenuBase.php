@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kronhyx
- * Date: 13/01/2017
- * Time: 11:49 AM.
- */
 
 namespace Kronhyx\BaseBundle\Base;
 
@@ -17,6 +11,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Class MenuBase
  * @package Kronhyx\BaseBundle\Base
+ * @author Randy Téllez Galán <kronhyx@gmail.com>
  */
 abstract class MenuBase implements MenuBaseInterface
 {
@@ -24,6 +19,22 @@ abstract class MenuBase implements MenuBaseInterface
      * @var RouterInterface $router
      */
     protected $router;
+
+    /**
+     * @var MenuFactory $factory
+     */
+    protected $factory;
+
+    /**
+     * MenuBase constructor.
+     * @param RouterInterface $router
+     * @param MenuFactory $factory
+     */
+    public function __construct(RouterInterface $router, MenuFactory $factory)
+    {
+        $this->router = $router;
+        $this->factory = $factory;
+    }
 
     /**
      * @return array
@@ -51,15 +62,9 @@ abstract class MenuBase implements MenuBaseInterface
         /** @noinspection PhpUndefinedFieldInspection */
         $menu = $event->menu;
 
-        /** @noinspection PhpUndefinedFieldInspection */
-        $factory = $event->provider;
-
         $reflection = new \ReflectionClass($this);
 
-        $item = new MenuItem($reflection->name, $factory);
-
-        /** @noinspection PhpUndefinedFieldInspection */
-        $this->setRouter($event->router);
+        $item = new MenuItem($reflection->name, $this->factory);
 
         $item
             ->setLabel(\explode('\\', $reflection->name)[1])
@@ -81,14 +86,6 @@ abstract class MenuBase implements MenuBaseInterface
         $menu->addChild($item);
 
         return $event;
-    }
-
-    /**
-     * @param RouterInterface $router
-     */
-    public function setRouter(RouterInterface $router)
-    {
-        $this->router = $router;
     }
 
 }

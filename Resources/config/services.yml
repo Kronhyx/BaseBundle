@@ -14,4 +14,10 @@ services:
         resource: "../../*"
         exclude: "../../{Entity,Repository,Tests,DependencyInjection}"
         public: true
-        autowire: true
+
+    Kronhyx\BaseBundle\Controller\:
+        resource: "../../Controller"
+        public: true
+        tags: ['controller.service_arguments']
+        calls:
+            - [ setContainer, ['@Symfony\Component\DependencyInjection\ContainerInterface']]

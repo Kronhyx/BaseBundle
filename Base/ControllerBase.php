@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @Route("base/")
@@ -37,8 +38,9 @@ abstract class ControllerBase extends Controller
      * @param EntityManagerInterface $manager
      * @param FormFactoryInterface $form
      * @param EventDispatcherInterface $dispatcher
+     * @param RouterInterface $router
      */
-    public function __construct(EntityManagerInterface $manager, FormFactoryInterface $form, EventDispatcherInterface $dispatcher)
+    public function __construct(EntityManagerInterface $manager, FormFactoryInterface $form, EventDispatcherInterface $dispatcher, RouterInterface $router)
     {
         $this->manager = $manager;
         $this->form = $form;

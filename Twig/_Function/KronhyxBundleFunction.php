@@ -8,7 +8,6 @@
 
 namespace Kronhyx\BaseBundle\Twig\_Function;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Menu\MenuFactory;
 use Kronhyx\BaseBundle\Form\Type\SearchType;
 use Symfony\Component\EventDispatcher\Event;
@@ -57,25 +56,18 @@ class KronhyxBundleFunction extends \Twig_Extension
     private $form;
 
     /**
-     * @var RouterInterface $router
-     */
-    private $router;
-
-    /**
      * KronhyxBundleFunction constructor.
      * @param EventDispatcherInterface $dispatcher
      * @param MenuFactory $factory
      * @param FormFactoryInterface $formFactory
      * @param RequestStack $stack
-     * @param RouterInterface $router
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
-    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory, RequestStack $stack, RouterInterface $router)
+    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory, RequestStack $stack)
     {
         $this->factory = $factory;
         $this->dispatcher = $dispatcher;
         $this->formFactory = $formFactory;
-        $this->router = $router;
         $this->request = $stack->getCurrentRequest();
 
         //Initialize Methods
@@ -88,13 +80,12 @@ class KronhyxBundleFunction extends \Twig_Extension
      */
     public function getFunctions()
     {
-        $functions = new ArrayCollection(parent::getFunctions());
+        return [
+            new \Twig_SimpleFunction('KronhyxBundle', [
+                $this, 'KronhyxBundle'
+            ])
+        ];
 
-        $functions->add(new \Twig_SimpleFunction('KronhyxBundle', [
-            $this, 'KronhyxBundle'
-        ]));
-
-        return $functions->toArray();
     }
 
     /**
@@ -119,9 +110,6 @@ class KronhyxBundleFunction extends \Twig_Extension
 
         /** @noinspection PhpUndefinedFieldInspection */
         $sidebar->provider = $this->factory;
-
-        /** @noinspection PhpUndefinedFieldInspection */
-        $sidebar->router = $this->router;
 
         /** @noinspection PhpUndefinedFieldInspection */
         $sidebar->menu = $this->factory->createItem('sidebar');

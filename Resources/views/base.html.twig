@@ -16,6 +16,8 @@
         <!-- App title -->
         <title>Kronhyx - {% block title 'BaseBundle' %}</title>
 
+        {% block stylesheets %}{% endblock %}
+
         <!-- App CSS -->
         <link href="{{ asset('bundles/easyadmin/stylesheet/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('bundles/kronhyxbase/css/core.css') }}" rel="stylesheet" type="text/css"/>
@@ -24,8 +26,6 @@
         <link href="{{ asset('bundles/kronhyxbase/css/pages.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('bundles/kronhyxbase/css/menu.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('bundles/kronhyxbase/css/responsive.css') }}" rel="stylesheet" type="text/css"/>
-
-        {% block stylesheets %}{% endblock %}
 
         <script src="{{ asset('bundles/kronhyxbase/js/modernizr.min.js') }}"></script>
 
@@ -248,6 +248,9 @@
 
     </div>
     <!-- END wrapper -->
+
+
+    <script>var resizefunc = [];</script>
 
     <!-- jQuery  -->
     <script src="{{ asset('bundles/easyadmin/javascript/jquery.min.js') }}"></script>

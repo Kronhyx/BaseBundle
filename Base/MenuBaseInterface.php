@@ -22,8 +22,4 @@ interface MenuBaseInterface extends EventSubscriberInterface
      */
     public function getIcon();
 
-    /**
-     * @return string
-     */
-    public function getUri();
 }
