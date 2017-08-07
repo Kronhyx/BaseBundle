@@ -12,8 +12,8 @@ File: Icons
  * -------------------------- */
 @font-face {
     font-family: 'FontAwesome';
-    src: url('../fonts/fontawesome-webfont.eot?v=4.5.0');
-    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+    src: url('../fonts/FontAwesome/fontawesome-webfont.eot?v=4.5.0');
+    src: url('../fonts/FontAwesome/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../fonts/FontAwesome/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), url('../fonts/FontAwesome/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('../fonts/FontAwesome/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), url('../fonts/FontAwesome/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -2733,8 +2733,8 @@ File: Icons
 
 @font-face {
     font-family: 'themify';
-    src: url('../fonts/themify.eot?-fvbane');
-    src: url('../fonts/themify.eot?#iefix-fvbane') format('embedded-opentype'), url('../fonts/themify.woff?-fvbane') format('woff'), url('../fonts/themify.ttf?-fvbane') format('truetype'), url('../fonts/themify.svg?-fvbane#themify') format('svg');
+    src: url('../fonts/Themify/themify.eot?-fvbane');
+    src: url('../fonts/Themify/themify.eot?#iefix-fvbane') format('embedded-opentype'), url('../fonts/Themify/themify.woff?-fvbane') format('woff'), url('../fonts/Themify/themify.ttf?-fvbane') format('truetype'), url('../fonts/Themify/themify.svg?-fvbane#themify') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -4167,7 +4167,7 @@ File: Icons
  */
 @font-face {
     font-family: 'Material-Design-Iconic-Font';
-    src: url('../fonts/Material-Design-Iconic-Font.woff2?v=2.2.0') format('woff2'), url('../fonts/Material-Design-Iconic-Font.woff?v=2.2.0') format('woff'), url('../fonts/Material-Design-Iconic-Font.ttf?v=2.2.0') format('truetype');
+    src: url('../fonts/MaterialDesign/material-Design-Iconic-Font.woff2?v=2.2.0') format('woff2'), url('../fonts/MaterialDesign/material-Design-Iconic-Font.woff?v=2.2.0') format('woff'), url('../fonts/MaterialDesign/material-Design-Iconic-Font.ttf?v=2.2.0') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

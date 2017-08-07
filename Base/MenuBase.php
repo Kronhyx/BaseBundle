@@ -6,6 +6,7 @@ use AppBundle\Controller\AdminController;
 use Knp\Menu\MenuFactory;
 use Knp\Menu\MenuItem;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -34,6 +35,7 @@ abstract class MenuBase implements MenuBaseInterface
     {
         $this->router = $router;
         $this->factory = $factory;
+        $this->router->setContext($context = new RequestContext($_SERVER['SCRIPT_NAME']));
     }
 
     /**
@@ -82,7 +84,6 @@ abstract class MenuBase implements MenuBaseInterface
                 $item->addChild($method->invoke($this, $event->provider));
             }
         }
-
         $menu->addChild($item);
 
         return $event;
