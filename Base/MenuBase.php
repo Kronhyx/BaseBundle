@@ -6,6 +6,7 @@ use AppBundle\Controller\AdminController;
 use Knp\Menu\MenuFactory;
 use Knp\Menu\MenuItem;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -66,10 +67,12 @@ abstract class MenuBase implements MenuBaseInterface
 
         $reflection = new \ReflectionClass($this);
 
-        $item = new MenuItem($reflection->name, $this->factory);
+        $name = \explode('\\', $reflection->name)[1];
+
+        $item = new MenuItem($name, $this->factory);
 
         $item
-            ->setLabel(\explode('\\', $reflection->name)[1])
+            ->setLabel($name)
             ->setUri(null)
             ->setAttributes([
                 'icon' => $this->getIcon()
@@ -84,9 +87,44 @@ abstract class MenuBase implements MenuBaseInterface
                 $item->addChild($method->invoke($this, $event->provider));
             }
         }
-        $menu->addChild($item);
+        $menu->addChild($this->isCurrent($item));
 
         return $event;
+    }
+
+    /**
+     * @param MenuItem $item
+     * @return MenuItem
+     */
+    protected function isCurrent(MenuItem $item)
+    {
+        $children = $item;
+        while (!empty($children->getChildren())) {
+            /**
+             * @var MenuItem $child
+             */
+            foreach ($children as $child) {
+                $children = $child;
+                if ($child->getUri() === Request::createFromGlobals()->getRequestUri()) {
+                    $child->setCurrent(true);
+
+                    $parent = $child;
+                    while ($parent->getParent()) {
+                        if ($parent->getParent()) {
+                            $parent = $parent->getParent();
+                            $parent->setCurrent(true);
+                        } else {
+                            break;
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        return $item;
     }
 
 }

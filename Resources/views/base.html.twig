@@ -114,7 +114,7 @@
                     <ul>
                         {% for menu in kronhyx_global().menu.sidebar %}
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect">
+                                <a href="javascript:void(0);" class="waves-effect {{ menu.current?'active':null }}">
                                     {% if menu.attributes.icon is defined %}
                                         <i class="{{ menu.attributes.icon }}">&nbsp;</i>
                                     {% endif %}
@@ -124,8 +124,8 @@
                                 {% if menu.children %}
                                     <ul class="list-unstyled">
                                         {% for child in menu.children %}
-                                            <li>
-                                                <a href="{{ child.uri }}">{{ child.label }}</a>
+                                            <li class="waves-effect {{ child.current?'active':null }}">
+                                                <a  href="{{ child.uri }}">{{ child.label }}</a>
                                             </li>
                                         {% endfor %}
                                     </ul>

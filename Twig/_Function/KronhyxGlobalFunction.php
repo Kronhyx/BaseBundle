@@ -122,7 +122,6 @@ class KronhyxGlobalFunction extends \Twig_Extension
 
         $this->dispatcher->dispatch('kronhyx.base.menu.dispatch', $sidebar);
 
-
         /** @noinspection PhpUndefinedFieldInspection */
         $this->menu = [
             'sidebar' => $sidebar->menu
