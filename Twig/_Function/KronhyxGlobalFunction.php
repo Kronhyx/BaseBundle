@@ -8,6 +8,7 @@
 
 namespace Kronhyx\BaseBundle\Twig\_Function;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Menu\MenuFactory;
 use Kronhyx\BaseBundle\Form\Type\SearchType;
 use Symfony\Component\EventDispatcher\Event;
@@ -16,14 +17,13 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class DateTimeExtension
  * @package Kronhyx\BaseBundle\Twig\_Extension
  * @author Randy Téllez <kronhyx@gmail.com>
  */
-class KronhyxBundleFunction extends \Twig_Extension
+class KronhyxGlobalFunction extends \Twig_Extension
 {
     /**
      * @var MenuFactory $factory
@@ -76,23 +76,29 @@ class KronhyxBundleFunction extends \Twig_Extension
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function getFunctions()
     {
-        return [
-            new \Twig_SimpleFunction('KronhyxBundle', [
-                $this, 'KronhyxBundle'
-            ])
-        ];
+        $functions = new ArrayCollection(parent::getFunctions());
 
+        $donut = new \Twig_SimpleFunction('kronhyx_global',
+            [$this, 'KronhyxGlobal'],
+            [
+
+            ]
+        );
+
+        $functions->add($donut);
+
+        return $functions->toArray();
     }
 
     /**
      * @return array
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
-    public function KronhyxBundle()
+    public function KronhyxGlobal()
     {
 
         return [
@@ -124,7 +130,6 @@ class KronhyxBundleFunction extends \Twig_Extension
 
         return $this;
     }
-
 
     /**
      * @return KronhyxBundleFunction
