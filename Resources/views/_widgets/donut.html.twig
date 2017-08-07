@@ -1,0 +1,26 @@
+{% spaceless %}
+    <div id="{{ donut.name }}" style="height: 245px;"></div>
+    <script type="application/javascript" rel="javascript">
+        document.onreadystatechange = function () {
+            if (document.readyState === 'complete') {
+                Morris.Donut({
+                    resize: true, //defaulted to true
+                    {% if donut.color is not empty %}
+                    colors: [{% for color in donut.color %}'{{ color }}',{% endfor %}],
+                    {% endif %}
+                    backgroundColor: '#2f3e47',
+                    labelColor: '#fff',
+                    element: '{{ donut.name }}',
+                    data: [
+                        {% for name,data in donut.data %}
+                        {
+                            label: "{{ name }}",
+                            value: {{ data|length }}
+                        },
+                        {% endfor %}
+                    ]
+                });
+            }
+        }
+    </script>
+{% endspaceless %}
