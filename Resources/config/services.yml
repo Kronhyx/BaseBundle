@@ -15,9 +15,13 @@ services:
         exclude: "../../{Entity,Repository,Tests,DependencyInjection}"
         public: true
 
+    Kronhyx\BaseBundle\Event\Listener\KernelRequest:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: checkPermission }
+
     Kronhyx\BaseBundle\Controller\:
         resource: "../../Controller"
         public: true
         tags: ['controller.service_arguments']
         calls:
-            - [ setContainer, ['@Symfony\Component\DependencyInjection\ContainerInterface']]
+            - [ setContainer, ['@service_container']]

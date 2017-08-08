@@ -619,7 +619,7 @@ File: Menu
 }
 
 .right-bar {
-    background: #ffffff !important;
+    background: #253138 !important;
     z-index: 999 !important;
 }
 
@@ -636,7 +636,7 @@ File: Menu
     float: right;
     line-height: 46px;
     font-size: 20px;
-    color: #333;
+    color: #eee;
     padding: 0 10px;
 }
 
@@ -695,7 +695,7 @@ File: Menu
 }
 
 .user-list .user-list-item .user-desc span.desc {
-    color: #98a6ad;
+    color: #eee;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
@@ -706,7 +706,7 @@ File: Menu
 
 .user-list .user-list-item .user-desc span.time {
     font-size: 11px;
-    color: #71b6f9;
+    color: #000000;
     font-style: italic;
 }
 

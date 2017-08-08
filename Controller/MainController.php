@@ -10,11 +10,12 @@ namespace Kronhyx\BaseBundle\Controller;
 
 use Kronhyx\BaseBundle\Base\ControllerBase;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class DefaultController
+ * Class MainController
  * @package Kronhyx\BaseBundle\Controller
  * @author Randy Téllez Galán <kronhyx@gmail.com>
  */
@@ -28,13 +29,10 @@ class MainController extends ControllerBase
      * @param Request $request
      * @return array
      *
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
     public function dashboardAction(Request $request)
     {
-
         return [];
-
     }
 
 }

@@ -4,19 +4,20 @@ namespace Kronhyx\BaseBundle\Base;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 
 /**
- * @Route("base/")
  *
  * Class MasterController
  * @package Kronhyx\BaseBundle\Controller
  * @author Randy Téllez Galán <kronhyx@gmail.com>
+ *
  */
-abstract class ControllerBase extends Controller
+class ControllerBase extends Controller
 {
     /**
      * @var EntityManagerInterface $manager
@@ -34,17 +35,20 @@ abstract class ControllerBase extends Controller
     protected $dispatcher;
 
     /**
-     * ControllerBase constructor.
-     * @param EntityManagerInterface $manager
-     * @param FormFactoryInterface $form
-     * @param EventDispatcherInterface $dispatcher
-     * @param RouterInterface $router
+     * @var EventDispatcherInterface $dispatcher
      */
-    public function __construct(EntityManagerInterface $manager, FormFactoryInterface $form, EventDispatcherInterface $dispatcher, RouterInterface $router)
+    protected $container;
+
+    /**
+     * ControllerBase constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
     {
-        $this->manager = $manager;
-        $this->form = $form;
-        $this->dispatcher = $dispatcher;
+        $this->container = $container;
+        $this->manager = $this->get('doctrine.orm.entity_manager');
+        $this->form = $this->get('form.factory');
+        $this->dispatcher = $this->get('event_dispatcher');
     }
 
 }

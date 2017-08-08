@@ -5,7 +5,7 @@
             if (document.readyState === 'complete') {
                 Morris.Donut({
                     resize: true, //defaulted to true
-                    {% if donut.options.color is defined and donut.options.colors not empty %}
+                    {% if donut.options.color is defined and donut.options.colors is not empty %}
                     colors: [{% for color in donut.options.color %}'{{ color }}',{% endfor %}],
                     {% endif %}
                     backgroundColor: '#2f3e47',
