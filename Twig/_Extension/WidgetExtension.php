@@ -19,20 +19,6 @@ class WidgetExtension extends \Twig_Extension
 {
 
     /**
-     * @var \Twig_Environment $environment
-     */
-    private $environment;
-
-    /**
-     * WidgetExtension constructor.
-     * @param \Twig_Environment $environment
-     */
-    public function __construct(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function getFunctions()
@@ -43,7 +29,7 @@ class WidgetExtension extends \Twig_Extension
             [$this, 'donut'],
             [
                 'is_safe' => ['html'],
-                'needs_environment' => true,
+                'needs_environment' => true
             ]
         );
 
@@ -53,20 +39,22 @@ class WidgetExtension extends \Twig_Extension
     }
 
     /**
+     * @param \Twig_Environment $environment
      * @param array $data
-     * @param array $colors
      * @param array $options
      * @return string
+     * @throws \Twig_Error_Syntax
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Loader
      */
-    public function donut(\Twig_Environment $environment, array $data, array $color = [], array $options = [])
+    public function donut(\Twig_Environment $environment, array $data, array $options = [])
     {
         return $environment->render('@KronhyxBase/_widgets/donut.html.twig', [
             'donut' => [
-                'name' => 'kronhyx_widget_donut_' . uniqid(),
+                'name' => \uniqid('kronhyx_widget_donut_', true),
                 'data' => $data,
-                'color' => $color,
-                'options' => $options,
-            ],
+                'options' => $options
+            ]
         ]);
     }
 

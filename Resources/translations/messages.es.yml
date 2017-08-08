@@ -2,5 +2,7 @@ kronhyx:
   base:
     label:
       search: 'Buscar'
+      view_all: 'Ver Todo'
+      username: 'Usuario'
     placeholder:
           search: 'Buscar...'
