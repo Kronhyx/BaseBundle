@@ -16,7 +16,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class DateTimeExtension
@@ -56,19 +55,18 @@ class KronhyxGlobalFunction extends \Twig_Extension
     private $form;
 
     /**
-     * KronhyxBundleFunction constructor.
+     * KronhyxGlobalFunction constructor.
      * @param EventDispatcherInterface $dispatcher
      * @param MenuFactory $factory
      * @param FormFactoryInterface $formFactory
-     * @param RequestStack $stack
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
-    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory, RequestStack $stack)
+    public function __construct(EventDispatcherInterface $dispatcher, MenuFactory $factory, FormFactoryInterface $formFactory)
     {
         $this->factory = $factory;
         $this->dispatcher = $dispatcher;
         $this->formFactory = $formFactory;
-        $this->request = $stack->getCurrentRequest();
+        $this->request = Request::createFromGlobals();
 
         //Initialize Methods
         $this->getMenu();
@@ -108,7 +106,7 @@ class KronhyxGlobalFunction extends \Twig_Extension
     }
 
     /**
-     * @return KronhyxBundleFunction
+     * @return KronhyxGlobalFunction
      */
     private function getMenu()
     {
@@ -131,7 +129,7 @@ class KronhyxGlobalFunction extends \Twig_Extension
     }
 
     /**
-     * @return KronhyxBundleFunction
+     * @return KronhyxGlobalFunction
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
     private function getForm()
