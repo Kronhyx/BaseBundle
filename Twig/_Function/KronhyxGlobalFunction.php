@@ -10,6 +10,7 @@ namespace Kronhyx\BaseBundle\Twig\_Function;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Menu\MenuFactory;
+use Kronhyx\BaseBundle\Form\Type\LoginType;
 use Kronhyx\BaseBundle\Form\Type\SearchType;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -135,7 +136,8 @@ class KronhyxGlobalFunction extends \Twig_Extension
     private function getForm()
     {
         $form = [
-            'search' => $this->formFactory->create(SearchType::class)
+            'search' => $this->formFactory->create(SearchType::class),
+            'login' => $this->formFactory->create(LoginType::class)
         ];
 
         /**
