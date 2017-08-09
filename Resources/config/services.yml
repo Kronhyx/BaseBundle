@@ -15,7 +15,7 @@ services:
         exclude: "../../{Entity,Repository,Tests,DependencyInjection}"
         public: true
 
-    Kronhyx\BaseBundle\Event\Listener\KernelRequest:
+    Kronhyx\BaseBundle\Event\Listener\KernelListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: checkPermission }
 
