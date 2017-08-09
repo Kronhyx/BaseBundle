@@ -39,7 +39,7 @@ class LoginType extends AbstractType
                 'label' => 'kronhyx.base.label.rememberme',
             ])
             ->add('submit', ButtonType::class, [
-                'label' => 'kronhyx.base.label.submit',
+                'label' => 'kronhyx.base.label.login',
             ]);
     }
 

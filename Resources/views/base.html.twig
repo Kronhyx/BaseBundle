@@ -1,6 +1,8 @@
 {% spaceless %}
 
-    {% form_theme kronhyx_global().form.search 'KronhyxBaseBundle::form.html.twig' %}
+    {% for form in kronhyx_global().form %}
+        {% form_theme form 'KronhyxBaseBundle::form.html.twig' %}
+    {% endfor %}
 
     <!DOCTYPE html>
     <html>

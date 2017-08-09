@@ -6,7 +6,13 @@ kronhyx:
       username: 'Usuario'
       password: 'Contraseña'
       rememberme: 'Recordarme'
+      login: 'Iniciar'
     placeholder:
       search: 'Buscar...'
       username: 'Usuario'
       password: 'Contraseña'
+    title:
+      dont_have_account: '¿No tienes cuenta?'
+      forgot: '¿Olvidaste tu contrsaeña?'
+      register: '¡Registrate!'
+      login: '¡Iniciar Sesión!'

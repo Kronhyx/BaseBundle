@@ -59,10 +59,13 @@ class KernelRequest extends EventListenerBase
     public function checkPermission(GetResponseEvent $event, string $listener, TraceableEventDispatcher $dispatcher)
     {
         $attributes = $event->getRequest()->attributes;
-        if (!$this->storage->getToken() instanceof UsernamePasswordToken && $attributes->get('exception') === null) {
-            if (AuthController::class !== explode('::', $attributes->get('_controller'))[0]) {
-                exit(dump($this->storage, AuthController::class, $event->getRequest(), explode('::', $attributes->get('_controller'))[0]));
-                return $event->setResponse(new RedirectResponse($this->router->generate('kronhyx_base_auth_login')));
+        $class = explode('::', $attributes->get('_controller'))[0];
+        if (explode('\\', $class)[0] === 'Kronhyx') {
+            $reflection = new \ReflectionClass($class);
+            if (!$this->storage->getToken() instanceof UsernamePasswordToken && $attributes->get('exception') === null) {
+                if (AuthController::class !== $reflection->name) {
+                    return $event->setResponse(new RedirectResponse($this->router->generate('kronhyx_base_auth_login')));
+                }
             }
         }
     }
