@@ -1,0 +1,65 @@
+
+@keyframes twinkle-twinkle {
+    from {
+        background-position: 0 0
+    }
+    to {
+        background-position: -10000px 5000px
+    }
+}
+
+@-webkit-keyframes twinkle-twinkle {
+    from {
+        background-position: 0 0
+    }
+    to {
+        background-position: -10000px 5000px
+    }
+}
+
+@-moz-keyframes twinkle-twinkle {
+    from {
+        background-position: 0 0
+    }
+    to {
+        background-position: -10000px 5000px
+    }
+}
+
+@-ms-keyframes twinkle-twinkle {
+    from {
+        background-position: 0 0
+    }
+    to {
+        background-position: -10000px 5000px
+    }
+}
+
+@media (min-width: 768px) {
+    .stars, .twinkling {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: block
+    }
+}
+
+.stars {
+    background: #14121b url(../images/auth/stars.png) repeat top center;
+    z-index: 0;
+    background-attachment: fixed;
+}
+
+.twinkling {
+    background: transparent url(../images/auth/twinkle.png) repeat top center;
+    -moz-animation: twinkle-twinkle 400s linear infinite;
+    -ms-animation: twinkle-twinkle 400s linear infinite;
+    -o-animation: twinkle-twinkle 400s linear infinite;
+    -webkit-animation: twinkle-twinkle 400s linear infinite;
+    animation: twinkle-twinkle 400s linear infinite;
+    background-attachment: fixed;
+}

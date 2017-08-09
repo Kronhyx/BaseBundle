@@ -1,7 +1,12 @@
 {% extends'@KronhyxBase/base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/kronhyxbase/css/universe.css') }}">
+{% endblock %}
+
 {% block page %}
-    <div class="account-pages">&nbsp;</div>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
     <div class="clearfix">&nbsp;</div>
     <div class="wrapper-page">
         {% block heart %}

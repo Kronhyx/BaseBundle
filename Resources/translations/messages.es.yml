@@ -4,5 +4,9 @@ kronhyx:
       search: 'Buscar'
       view_all: 'Ver Todo'
       username: 'Usuario'
+      password: 'Contraseña'
+      rememberme: 'Recordarme'
     placeholder:
-          search: 'Buscar...'
+      search: 'Buscar...'
+      username: 'Usuario'
+      password: 'Contraseña'
