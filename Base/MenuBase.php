@@ -43,7 +43,7 @@ abstract class MenuBase implements MenuBaseInterface
         $this->router = $router;
         $this->factory = $factory;
         $this->collection = new ArrayCollection();
-        $this->router->setContext($context = new RequestContext($_SERVER['SCRIPT_NAME']));
+        $this->router->setContext($context = new RequestContext(Request::createFromGlobals()->server->get('SCRIPT_NAME')));
 
     }
 
