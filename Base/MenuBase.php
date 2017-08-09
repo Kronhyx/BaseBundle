@@ -3,6 +3,7 @@
 namespace Kronhyx\BaseBundle\Base;
 
 use AppBundle\Controller\AdminController;
+use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Menu\MenuFactory;
 use Knp\Menu\MenuItem;
 use Symfony\Component\EventDispatcher\Event;
@@ -28,6 +29,11 @@ abstract class MenuBase implements MenuBaseInterface
     protected $factory;
 
     /**
+     * @var ArrayCollection $collection
+     */
+    protected $collection;
+
+    /**
      * MenuBase constructor.
      * @param RouterInterface $router
      * @param MenuFactory $factory
@@ -36,7 +42,9 @@ abstract class MenuBase implements MenuBaseInterface
     {
         $this->router = $router;
         $this->factory = $factory;
+        $this->collection = new ArrayCollection();
         $this->router->setContext($context = new RequestContext($_SERVER['SCRIPT_NAME']));
+
     }
 
     /**
@@ -58,6 +66,7 @@ abstract class MenuBase implements MenuBaseInterface
      */
     public function getMenu(Event $event)
     {
+
         /**
          * @var MenuItem $menu
          * @var MenuFactory $factory
@@ -75,7 +84,7 @@ abstract class MenuBase implements MenuBaseInterface
             ->setLabel($name)
             ->setUri(null)
             ->setAttributes([
-                'icon' => $this->getIcon()
+                'icon' => $reflection->getMethod('getIcon')->invoke($this)
             ]);
 
         /**
@@ -88,6 +97,10 @@ abstract class MenuBase implements MenuBaseInterface
             }
         }
         $menu->addChild($this->isCurrent($item));
+
+        $this->collection->set($reflection->getMethod('getSpace')->invoke($this), $menu);
+
+        $event->collection = $this->collection;
 
         return $event;
     }

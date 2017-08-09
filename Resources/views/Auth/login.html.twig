@@ -6,23 +6,23 @@
             <h4 class="text-uppercase font-bold m-b-0">{{ 'kronhyx.base.title.login'|trans }}</h4>
         </div>
         <div class="panel-body">
-            {{ form_start(kronhyx_global().form.login,{attr:{
-                'class':'form-horizontal m-t-20'
-            }}) }}
+
+            {{ form_start(kronhyx.form.login,{attr:{'class':'form-horizontal m-t-20'}}) }}
+
             <div class="form-group ">
-                <div class="col-xs-12">{{ form_widget(kronhyx_global().form.login.user) }}</div>
+                <div class="col-xs-12">{{ form_widget(kronhyx.form.login.user) }}</div>
             </div>
 
             <div class="form-group">
-                <div class="col-xs-12">{{ form_widget(kronhyx_global().form.login.password) }}</div>
+                <div class="col-xs-12">{{ form_widget(kronhyx.form.login.password) }}</div>
             </div>
 
             <div class="form-group ">
-                <div class="col-xs-12">{{ form_row(kronhyx_global().form.login.rememberme) }}</div>
+                <div class="col-xs-12">{{ form_row(kronhyx.form.login.rememberme) }}</div>
             </div>
 
             <div class="form-group text-center m-t-30">
-                <div class="col-xs-12">{{ form_row(kronhyx_global().form.login.submit) }}</div>
+                <div class="col-xs-12">{{ form_row(kronhyx.form.login.submit) }}</div>
             </div>
 
             <div class="form-group m-t-30 m-b-0">
@@ -32,7 +32,8 @@
                     </a>
                 </div>
             </div>
-            {{ form_end(kronhyx_global().form.login) }}
+
+            {{ form_end(kronhyx.form.login) }}
 
         </div>
     </div>

@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% for form in kronhyx_global().form %}
+    {% for form in kronhyx.form %}
         {% form_theme form 'KronhyxBaseBundle::form.html.twig' %}
     {% endfor %}
 
@@ -88,17 +88,17 @@
                                 <!-- End Notification bar -->
                             </li>
                             <li class="hidden-xs">
-                                {{ form_start(kronhyx_global().form.search,{attr:{
+                                {{ form_start(kronhyx.form.search,{attr:{
                                     role:'search',
                                     class:'app-search',
                                 }}) }}
-                                {{ form_widget(kronhyx_global().form.search.word) }}
+                                {{ form_widget(kronhyx.form.search.word) }}
                                 <a>
                                     <button style="background: rgba(255, 255, 255, 0);border: rgba(255, 255, 255, 0);left: 18px;position: relative;">
                                         <i class="fa fa-search">&nbsp;</i>
                                     </button>
                                 </a>
-                                {{ form_end(kronhyx_global().form.search) }}
+                                {{ form_end(kronhyx.form.search) }}
                             </li>
                         </ul>
 
@@ -114,7 +114,7 @@
                     <!--- Sidebar -->
                     <div id="sidebar-menu">
                         <ul>
-                            {% for menu in kronhyx_global().menu.sidebar %}
+                            {% for menu in kronhyx.menu.sidebar %}
                                 <li class="has_sub">
                                     <a href="javascript:void(0);" class="waves-effect {{ menu.current?'active':null }}">
                                         {% if menu.attributes.icon is defined %}

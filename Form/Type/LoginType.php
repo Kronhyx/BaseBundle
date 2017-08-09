@@ -2,19 +2,19 @@
 
 namespace Kronhyx\BaseBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
+use Kronhyx\BaseBundle\Base\FormTypeBase;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * Class LoginType
  * @package Kronhyx\BaseBundle\Form\Type
+ * @author Randy Téllez Galán <kronhyx@gmail.com>
  */
-class LoginType extends AbstractType
+class LoginType extends FormTypeBase
 {
     /**
      * @param FormBuilderInterface $builder
@@ -22,6 +22,7 @@ class LoginType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('user', TextType::class, [
                 'label' => 'kronhyx.base.label.username',

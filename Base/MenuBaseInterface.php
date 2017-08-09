@@ -20,6 +20,11 @@ interface MenuBaseInterface extends EventSubscriberInterface
     /**
      * @return string
      */
-    public function getIcon();
+    public static function getIcon();
+
+    /**
+     * @return string
+     */
+    public static function getSpace();
 
 }

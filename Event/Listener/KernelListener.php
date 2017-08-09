@@ -10,6 +10,9 @@ namespace Kronhyx\BaseBundle\Event\Listener;
 
 use Kronhyx\BaseBundle\Base\EventListenerBase;
 use Kronhyx\BaseBundle\Controller\AuthController;
+use Kronhyx\BaseBundle\Service\MenuService;
+use Kronhyx\BaseBundle\Service\RecollectorService;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -41,26 +44,38 @@ class KernelListener extends EventListenerBase
     private $router;
 
     /**
-     * KernelRequest constructor.
-     * @param AuthorizationCheckerInterface $checker
-     * @param TokenStorageInterface $storage
-     * @param RouterInterface $router
+     * @var \Twig_Environment $environment
      */
-    public function __construct(AuthorizationCheckerInterface $checker, TokenStorageInterface $storage, RouterInterface $router)
+    private $twig;
+
+    /**
+     * @var ContainerInterface $container
+     */
+    private $container;
+
+    /**
+     * KernelListener constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
     {
-        $this->checker = $checker;
-        $this->storage = $storage;
-        $this->router = $router;
+
+        $this->container = $container;
+        $this->checker = $this->container->get('security.authorization_checker');
+        $this->storage = $this->container->get('security.token_storage');
+        $this->router = $this->container->get('router');
+        $this->twig = $this->container->get('twig');
+
     }
 
     /**
      * Comrprueba que esté logueado para acceder a la configuración del menú
      *
      * @param GetResponseEvent $event
-     * @param string $listener
+     * @param string $name
      * @param TraceableEventDispatcher $dispatcher
      */
-    public function checkPermission(GetResponseEvent $event, string $listener, TraceableEventDispatcher $dispatcher)
+    public function checkPermission(GetResponseEvent $event, string $name, TraceableEventDispatcher $dispatcher)
     {
         $attributes = $event->getRequest()->attributes;
         $class = explode('::', $attributes->get('_controller'))[0];
@@ -72,6 +87,24 @@ class KernelListener extends EventListenerBase
                 }
             }
         }
+    }
+
+    /**
+     * Agrega las variables globales a Twig
+     *
+     * @param GetResponseEvent $event
+     * @param string $name
+     * @param TraceableEventDispatcher $dispatcher
+     */
+    public function addTwigGlobal(GetResponseEvent $event, string $name, TraceableEventDispatcher $dispatcher)
+    {
+        $recollector = $this->container->get(RecollectorService::class);
+
+        $this->twig->addGlobal('kronhyx', [
+            'form' => $recollector->getForm(),
+            'menu' => $recollector->getMenu()
+        ]);
+
     }
 
 }

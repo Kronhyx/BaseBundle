@@ -2,7 +2,7 @@
 
 namespace Kronhyx\BaseBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
+use Kronhyx\BaseBundle\Base\FormTypeBase;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,8 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class SearchType
  * @package Kronhyx\BaseBundle\Form\Type
+ * @author Randy Téllez Galán <kronhyx@gmail.com>
  */
-class SearchType extends AbstractType
+class SearchType extends FormTypeBase
 {
     /**
      * @param FormBuilderInterface $builder

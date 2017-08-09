@@ -15,9 +15,16 @@ services:
         exclude: "../../{Entity,Repository,Tests,DependencyInjection}"
         public: true
 
+    Kronhyx\BaseBundle\Service\:
+        resource: "../../Service/*"
+        public: true
+        calls:
+            - [ setContainer, ['@service_container']]
+
     Kronhyx\BaseBundle\Event\Listener\KernelListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: checkPermission }
+            - { name: kernel.event_listener, event: kernel.request, method: addTwigGlobal }
 
     Kronhyx\BaseBundle\Controller\:
         resource: "../../Controller"
