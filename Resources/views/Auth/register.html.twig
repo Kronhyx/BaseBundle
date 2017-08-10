@@ -1,0 +1,47 @@
+{% extends '@KronhyxBase/auth.html.twig' %}
+
+{% block box %}
+    <div class="m-t-40 card-box">
+        <div class="text-center">
+            <h4 class="text-uppercase font-bold m-b-0">{{ 'kronhyx.base.title.register'|trans }}</h4>
+        </div>
+        <div class="panel-body">
+
+            {{ form_start(kronhyx.form.register,{attr:{'class':'form-horizontal m-t-20'}}) }}
+
+            <div class="form-group ">
+                <div class="col-xs-12">{{ form_widget(kronhyx.form.register.email) }}</div>
+            </div>
+
+            <div class="form-group ">
+                <div class="col-xs-12">{{ form_widget(kronhyx.form.register.user) }}</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12">{{ form_widget(kronhyx.form.register.password) }}</div>
+            </div>
+
+            <div class="form-group ">
+                <div class="col-xs-12">{{ form_row(kronhyx.form.register.terms) }}</div>
+            </div>
+
+            <div class="form-group text-center m-t-30">
+                <div class="col-xs-12">{{ form_row(kronhyx.form.register.submit) }}</div>
+            </div>
+
+            {{ form_end(kronhyx.form.register) }}
+
+        </div>
+    </div>
+    <!-- end card-box-->
+
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <p class="text-muted">{{ 'kronhyx.base.title.have_account'|trans }}
+                <a href="{{ path('kronhyx_base_auth_login') }}" class="text-primary m-l-5">
+                    <b>{{ 'kronhyx.base.title.login'|trans }}</b>
+                </a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
