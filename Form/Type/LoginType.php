@@ -3,8 +3,8 @@
 namespace Kronhyx\BaseBundle\Form\Type;
 
 use Kronhyx\BaseBundle\Base\FormTypeBase;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,10 +37,10 @@ class LoginType extends FormTypeBase
                 ]
             ])
             ->add('rememberme', CheckboxType::class, [
-                'label' => 'kronhyx.base.label.rememberme',
+                'label' => 'kronhyx.base.label.rememberme'
             ])
-            ->add('submit', ButtonType::class, [
-                'label' => 'kronhyx.base.label.login',
+            ->add('submit', SubmitType::class, [
+                'label' => 'kronhyx.base.label.submit'
             ]);
     }
 

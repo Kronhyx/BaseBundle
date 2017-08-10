@@ -5,25 +5,27 @@
 {% endblock %}
 
 {% block page %}
-
-    <div class="stars">&nbsp;</div>
-    <div class="twinkling">&nbsp;</div>
+    <body class="stars">
+    <div class="hidden-xs">
+        <div class="stars">&nbsp;</div>
+        <div class="twinkling">&nbsp;</div>
+    </div>
     <div class="wrapper-page">
 
         {% block heart %}
 
             <div class="text-center">
-                <a href="index.html" class="logo">
+                <a href="{{ path('kronhyx_base_auth_login') }}" class="logo">
                     <span>Kronhyx
                         <span>Bundle</span>
                     </span>
                 </a>
                 <h5 class="text-muted m-t-0 font-600">Bundle Admin Configurator</h5>
             </div>
-
             {% block box %}{% endblock %}
 
         {% endblock %}
 
     </div>
+    </body>
 {% endblock %}

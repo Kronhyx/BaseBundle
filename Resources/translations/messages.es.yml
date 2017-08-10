@@ -6,7 +6,7 @@ kronhyx:
       username: 'Usuario'
       password: 'Contraseña'
       rememberme: 'Recordarme'
-      login: 'Iniciar'
+      submit: 'Aceptar'
     placeholder:
       search: 'Buscar...'
       username: 'Usuario'
