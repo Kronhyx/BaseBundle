@@ -46,12 +46,13 @@ class LoginType extends FormTypeBase
     }
 
     /**
-     * @param OptionsResolver $resolver
-     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     * @return string
+     * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
+     * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
+     * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function getAction()
     {
-
+        return $this->router->generate('kronhyx_base_auth_login');
     }
-
 }

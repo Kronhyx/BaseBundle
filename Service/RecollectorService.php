@@ -39,6 +39,7 @@ class RecollectorService extends ServiceBase
     /**
      * RecollectorService constructor.
      * @param EventDispatcherInterface $dispatcher
+     * @param FormFactoryInterface $factory
      */
     public function __construct(EventDispatcherInterface $dispatcher, FormFactoryInterface $factory)
     {
@@ -49,6 +50,8 @@ class RecollectorService extends ServiceBase
 
     /**
      * @return \Knp\Menu\ItemInterface|\Knp\Menu\MenuItem
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
     public function getMenu()
     {

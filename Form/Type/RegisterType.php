@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class RegisterType
@@ -52,13 +51,15 @@ class RegisterType extends FormTypeBase
             ]);
     }
 
+
     /**
-     * @param OptionsResolver $resolver
-     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     * @return string
+     * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
+     * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
+     * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function getAction()
     {
-
+        return $this->router->generate('kronhyx_base_auth_register');
     }
-
 }

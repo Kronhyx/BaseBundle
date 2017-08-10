@@ -40,4 +40,22 @@ class SearchType extends FormTypeBase
         ]);
     }
 
+    /**
+     * @return string
+     * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
+     * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
+     * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
+     */
+    public function getAction()
+    {
+        return $this->router->generate('kronhyx_base_main_dashboard');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod()
+    {
+        return 'GET';
+    }
 }

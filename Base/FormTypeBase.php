@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class FormTypeBase
@@ -16,6 +17,20 @@ use Symfony\Component\HttpFoundation\Request;
  */
 abstract class FormTypeBase extends AbstractType implements FormTypeBaseInterface
 {
+    /**
+     * @var RouterInterface $router
+     */
+    protected $router;
+
+    /**
+     * FormTypeBase constructor.
+     * @param RouterInterface $router
+     */
+    public function __construct(RouterInterface $router)
+    {
+        $this->router = $router;
+    }
+
     /**
      * @return array
      */
@@ -31,6 +46,10 @@ abstract class FormTypeBase extends AbstractType implements FormTypeBaseInterfac
     /**
      * @param Event $event
      * @return Event
+     * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
+     * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
+     * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
+     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @throws \ReflectionException
      */
     public function getType(Event $event)
@@ -45,16 +64,35 @@ abstract class FormTypeBase extends AbstractType implements FormTypeBaseInterfac
 
         $reflection = new \ReflectionClass($this);
 
-        $form = $factory->create($reflection->name);
-
+        $form = $factory->createBuilder($reflection->name)
+            ->setAction($this->getAction())
+            ->setMethod($this->getMethod())
+            ->getForm();
         $form->handleRequest(Request::createFromGlobals());
 
-        $name = new ArrayCollection(explode('\\', $reflection->name));
+        $name = new ArrayCollection(\explode('\\', $reflection->name));
 
-        $collection->set(mb_strtolower(str_replace('Type', null, $name->last())), $form->createView());
+        $collection->set(mb_strtolower(\str_replace('Type', null, $name->last())), $form->createView());
 
         return $event;
     }
 
+    /**
+     * @return string
+     */
+    protected function getMethod()
+    {
+        return 'POST';
+    }
 
+    /**
+     * @return string
+     * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
+     * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
+     * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
+     */
+    protected function getAction()
+    {
+        return $this->router->generate('kronhyx_base_main_dashboard');
+    }
 }

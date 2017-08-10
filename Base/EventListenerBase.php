@@ -8,7 +8,10 @@
 
 namespace Kronhyx\BaseBundle\Base;
 
-
+/**
+ * Class EventListenerBase
+ * @package Kronhyx\BaseBundle\Base
+ */
 abstract class EventListenerBase
 {
 
