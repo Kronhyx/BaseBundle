@@ -13,6 +13,7 @@ use Kronhyx\BaseBundle\Controller\AuthController;
 use Kronhyx\BaseBundle\Service\MenuService;
 use Kronhyx\BaseBundle\Service\RecollectorService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\RouterInterface;
@@ -102,8 +103,12 @@ class KernelListener extends EventListenerBase
         $recollector = $this->container->get(RecollectorService::class);
 
         $this->twig->addGlobal('kronhyx', [
-            'form' => $recollector->getForm(),
-            'menu' => $recollector->getMenu()
+            'form' => $recollector->getForm()->map(function ($form) {
+                if ($form instanceof Form) {
+                    return $form->createView();
+                }
+            }),
+            'menu' => $recollector->getMenu()->toArray()
         ]);
 
     }

@@ -9,7 +9,9 @@
 namespace Kronhyx\BaseBundle\Controller;
 
 use Kronhyx\BaseBundle\Base\ControllerBase;
+use Kronhyx\BaseBundle\Service\RecollectorService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -24,10 +26,10 @@ class AuthController extends ControllerBase
      * @Route("login.php/")
      * @Template("@KronhyxBase/Auth/login.html.twig")
      *
+     * @param Request $request
      * @return array
-     *
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
 
         return [];
@@ -38,11 +40,19 @@ class AuthController extends ControllerBase
      * @Route("recover.php/")
      * @Template("@KronhyxBase/Auth/recover.html.twig")
      *
-     * @return array
-     *
+     * @param Request $request
+     * @return array|string
      */
-    public function recoverAction()
+    public function recoverAction(Request $request)
     {
+        $form = $this->get(RecollectorService::class)->getForm('recover')->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            return $this->render('@KronhyxBase/Auth/recoverConfirm.html.twig', [
+                'data' => $form->getData()
+            ]);
+        }
 
         return [];
 
@@ -52,10 +62,10 @@ class AuthController extends ControllerBase
      * @Route("register.php/")
      * @Template("@KronhyxBase/Auth/register.html.twig")
      *
+     * @param Request $request
      * @return array
-     *
      */
-    public function registerAction()
+    public function registerAction(Request $request)
     {
 
         return [];

@@ -54,7 +54,6 @@ abstract class FormTypeBase extends AbstractType implements FormTypeBaseInterfac
      */
     public function getType(Event $event)
     {
-
         /**
          * @var FormFactoryInterface $factory
          * @var ArrayCollection $collection
@@ -68,11 +67,10 @@ abstract class FormTypeBase extends AbstractType implements FormTypeBaseInterfac
             ->setAction($this->getAction())
             ->setMethod($this->getMethod())
             ->getForm();
-        $form->handleRequest(Request::createFromGlobals());
 
         $name = new ArrayCollection(\explode('\\', $reflection->name));
 
-        $collection->set(mb_strtolower(\str_replace('Type', null, $name->last())), $form->createView());
+        $collection->set(mb_strtolower(\str_replace('Type', null, $name->last())), $form);
 
         return $event;
     }

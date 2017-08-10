@@ -20,5 +20,7 @@ kronhyx:
       register: '¡Registrate!'
       login: '¡Iniciar Sesión!'
       recover: '¡Recuperar cuenta!'
+      confirm_recover: 'Confirmar Correo'
     hint:
-      recover: "Enter your email address and we'll send you an email with instructions to reset your password."
+      recover: 'Ingrese su dirección de correo electrónico y le enviaremos un correo electrónico con instrucciones para restablecer su contraseña.'
+      confirm_recover: 'Se ha enviado un correo electrónico a %email%. Por favor, revise sus bandeja de entrada.'

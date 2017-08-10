@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Kronhyx\BaseBundle\Base\ServiceBase;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**
@@ -49,7 +50,8 @@ class RecollectorService extends ServiceBase
     }
 
     /**
-     * @return \Knp\Menu\ItemInterface|\Knp\Menu\MenuItem
+     * @return ArrayCollection
+     *
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
@@ -67,16 +69,16 @@ class RecollectorService extends ServiceBase
 
         $this->collection = $event->collection;
 
-        return $this->collection->toArray();
+        return $this->collection;
     }
 
     /**
-     * @return array
+     * @param string|null $form
+     * @return ArrayCollection|Form
      */
-    public function getForm()
+    public function getForm(string $form = null)
     {
         $event = new Event();
-
         $event->factory = $this->factory;
         $event->collection = $this->collection;
 
@@ -84,7 +86,18 @@ class RecollectorService extends ServiceBase
 
         $this->form = $event->collection;
 
-        return $this->form->toArray();
+        if ($form) {
+            /**
+             * @var Form $item
+             */
+            foreach ($event->collection->toArray() as $key => $item) {
+                if ($item instanceof Form && $form === $key) {
+                    return $item;
+                }
+            }
+        }
+
+        return $this->form;
     }
 
 }

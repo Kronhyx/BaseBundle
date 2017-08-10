@@ -1,0 +1,25 @@
+{% extends '@KronhyxBase/auth.html.twig' %}
+
+{% block box %}
+    <div class="m-t-40 card-box">
+        <div class="text-center">
+            <h4 class="text-uppercase font-bold m-b-0">{{ 'kronhyx.base.title.confirm_recover'|trans }}</h4>
+        </div>
+        <div class="panel-body text-center">
+            <img src="{{ asset('bundles/kronhyxbase/images/mail_confirm.png') }}" alt="img"
+                 class="thumb-lg m-t-20 center-block">
+            <p class="text-muted font-13 m-t-20"> {% trans with {'%email%':data.email} %}
+                kronhyx.base.hint.confirm_recover{% endtrans %}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <p class="text-muted">
+                <a href="{{ path('kronhyx_base_auth_login') }}" class="text-primary m-l-5">
+                    <b>{{ 'kronhyx.base.title.login'|trans }}</b>
+                </a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
