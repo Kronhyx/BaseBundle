@@ -10,7 +10,6 @@ namespace Kronhyx\BaseBundle\Controller;
 
 use Kronhyx\BaseBundle\Base\ControllerBase;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -29,6 +28,34 @@ class AuthController extends ControllerBase
      *
      */
     public function loginAction()
+    {
+
+        return [];
+
+    }
+
+    /**
+     * @Route("recover.php/")
+     * @Template("@KronhyxBase/Auth/recover.html.twig")
+     *
+     * @return array
+     *
+     */
+    public function recoverAction()
+    {
+
+        return [];
+
+    }
+
+    /**
+     * @Route("register.php/")
+     * @Template("@KronhyxBase/Auth/register.html.twig")
+     *
+     * @return array
+     *
+     */
+    public function registerAction()
     {
 
         return [];

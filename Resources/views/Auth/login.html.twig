@@ -18,7 +18,7 @@
             </div>
 
             <div class="form-group ">
-                <div class="col-xs-12">{{ form_row(kronhyx.form.login.rememberme) }}</div>
+                <div class="col-xs-8">{{ form_row(kronhyx.form.login.rememberme) }}</div>
             </div>
 
             <div class="form-group text-center m-t-30">
@@ -27,7 +27,7 @@
 
             <div class="form-group m-t-30 m-b-0">
                 <div class="col-sm-12">
-                    <a class="text-muted">
+                    <a href="{{ path('kronhyx_base_auth_recover') }}" class="text-muted">
                         <i class="fa fa-lock m-r-5">&nbsp;</i> {{ 'kronhyx.base.title.forgot'|trans }}
                     </a>
                 </div>
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-sm-12 text-center">
             <p class="text-muted">{{ 'kronhyx.base.title.dont_have_account'|trans }}
-                <a class="text-primary m-l-5">
+                <a href="{{ path('kronhyx_base_auth_register') }}" class="text-primary m-l-5">
                     <b>{{ 'kronhyx.base.title.register'|trans }}</b>
                 </a>
             </p>

@@ -6,13 +6,19 @@ kronhyx:
       username: 'Usuario'
       password: 'Contraseña'
       rememberme: 'Recordarme'
+      terms: 'Acepto los términos y condiciones'
       submit: 'Aceptar'
     placeholder:
       search: 'Buscar...'
+      email: 'Correo'
       username: 'Usuario'
       password: 'Contraseña'
     title:
       dont_have_account: '¿No tienes cuenta?'
+      have_account: '¿Ya tienes cuenta?'
       forgot: '¿Olvidaste tu contrsaeña?'
       register: '¡Registrate!'
       login: '¡Iniciar Sesión!'
+      recover: '¡Recuperar cuenta!'
+    hint:
+      recover: "Enter your email address and we'll send you an email with instructions to reset your password."
