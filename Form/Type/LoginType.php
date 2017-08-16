@@ -8,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class LoginType
@@ -53,6 +52,6 @@ class LoginType extends FormTypeBase
      */
     public function getAction()
     {
-        return $this->router->generate('kronhyx_base_auth_login');
+        return $this->router->generate('app_auth_check');
     }
 }
