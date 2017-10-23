@@ -63,7 +63,6 @@ class RecollectorService extends ServiceBase
         $event->setArgument('collection', new ArrayCollection());
 
         $this->dispatcher->dispatch('kronhyx.base.menu.dispatch', $event);
-
         return $event->getArgument('collection');
     }
 

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Menu\MenuFactory;
 use Knp\Menu\MenuItem;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouterInterface;
@@ -64,15 +65,14 @@ abstract class MenuBase implements MenuBaseInterface
      * @return Event
      * @throws \ReflectionException
      */
-    public function getMenu(Event $event)
+    public function getMenu(GenericEvent $event)
     {
         /**
          * @var MenuItem $menu
          * @var MenuFactory $factory
          */
-        /** @noinspection PhpUndefinedFieldInspection */
-        $menu = $event->menu;
 
+        $menu = $event->getArgument('menu');
         $reflection = new \ReflectionClass($this);
 
         $name = \explode('\\', $reflection->name)[1];
@@ -92,7 +92,7 @@ abstract class MenuBase implements MenuBaseInterface
         foreach ($reflection->getMethods() as $method) {
             if ($method->class !== self::class && $method->getNumberOfParameters() === 1) {
 
-                $item->addChild($method->invoke($this, $event->provider));
+                $item->addChild($method->invoke($this, $event->getArgument('provider')));
 
             }
         }
@@ -100,7 +100,7 @@ abstract class MenuBase implements MenuBaseInterface
 
         $this->collection->set($reflection->getMethod('getSpace')->invoke($this), $menu);
 
-        $event->collection = $this->collection;
+        $event->setArgument('collection', $this->collection);
 
         return $event;
     }

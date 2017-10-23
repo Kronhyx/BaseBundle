@@ -25,6 +25,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: addTwigGlobal }
 
+    Kronhyx\BaseBundle\Event\Listener\RouteListener:
+        tags:
+            - { name: routing.loader, priority: 200}
+
     Kronhyx\BaseBundle\Controller\:
         resource: "../../Controller"
         public: true

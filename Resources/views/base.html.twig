@@ -116,26 +116,29 @@
                     <!--- Sidebar -->
                     <div id="sidebar-menu">
                         <ul>
-                            {% for menu in kronhyx.menu %}
-                                <li class="has_sub">
-                                    <a href="javascript:void(0);" class="waves-effect {{ menu.current?'active':null }}">
-                                        {% if menu.attributes.icon is defined %}
-                                            <i class="{{ menu.attributes.icon }}">&nbsp;</i>
+                            {% if kronhyx.menu.sidebar is defined %}
+                                {% for menu in kronhyx.menu.sidebar %}
+                                    <li class="has_sub">
+                                        <a href="javascript:void(0);"
+                                           class="waves-effect {{ menu.current?'active':null }}">
+                                            {% if menu.attributes.icon is defined %}
+                                                <i class="{{ menu.attributes.icon }}">&nbsp;</i>
+                                            {% endif %}
+                                            <span> {{ menu.label }} </span>
+                                            <span class="{{ menu.children?'menu-arrow':null }}"></span>
+                                        </a>
+                                        {% if menu.children %}
+                                            <ul class="list-unstyled">
+                                                {% for child in menu.children %}
+                                                    <li class="waves-effect {{ child.current?'active':null }}">
+                                                        <a href="{{ child.uri }}">{{ child.label }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
                                         {% endif %}
-                                        <span> {{ menu.label }} </span>
-                                        <span class="{{ menu.children?'menu-arrow':null }}"></span>
-                                    </a>
-                                    {% if menu.children %}
-                                        <ul class="list-unstyled">
-                                            {% for child in menu.children %}
-                                                <li class="waves-effect {{ child.current?'active':null }}">
-                                                    <a href="{{ child.uri }}">{{ child.label }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                         <div class="clearfix"></div>
                     </div>
