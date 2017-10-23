@@ -9,16 +9,12 @@
 namespace Kronhyx\BaseBundle\Event\Listener;
 
 use Kronhyx\BaseBundle\Base\EventListenerBase;
-use Kronhyx\BaseBundle\Controller\AuthController;
 use Kronhyx\BaseBundle\Service\MenuService;
 use Kronhyx\BaseBundle\Service\RecollectorService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * Class KernelListener
@@ -64,34 +60,6 @@ class KernelListener extends EventListenerBase
     }
 
     /**
-     * Comrprueba que esté logueado para acceder a la configuración del menú
-     *
-     * @param GetResponseEvent $event
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \InvalidArgumentException
-     * @throws \ReflectionException
-     */
-    public function checkPermission(GetResponseEvent $event)
-    {
-        $attributes = $event->getRequest()->attributes;
-        $class = \explode('::', $attributes->get('_controller'))[0];
-        if (\explode('\\', $class)[0] === 'Kronhyx') {
-            $reflection = new \ReflectionClass($class);
-            if (!$this->storage->getToken() instanceof UsernamePasswordToken && $attributes->get('exception') === null) {
-                if (AuthController::class !== $reflection->name) {
-                    return $event->setResponse(new RedirectResponse($this->router->generate('kronhyx_base_auth_login')));
-                }
-            } else {
-                if (AuthController::class === $reflection->name) {
-                    return $event->setResponse(new RedirectResponse($this->router->generate('kronhyx_base_main_dashboard')));
-                }
-            }
-        }
-
-        return $event->getResponse();
-    }
-
-    /**
      * Agrega las variables globales a Twig
      *
      * @param GetResponseEvent $event
@@ -104,9 +72,7 @@ class KernelListener extends EventListenerBase
 
         $this->twig->addGlobal('kronhyx', [
             'form' => $recollector->getForm()->map(function ($form) {
-                if ($form instanceof Form) {
-                    return $form->createView();
-                }
+                return $form->createView();
             }),
             'menu' => $recollector->getMenu()->toArray()
         ]);

@@ -23,7 +23,6 @@ services:
 
     Kronhyx\BaseBundle\Event\Listener\KernelListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: checkPermission }
             - { name: kernel.event_listener, event: kernel.request, method: addTwigGlobal }
 
     Kronhyx\BaseBundle\Controller\:

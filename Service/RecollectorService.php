@@ -10,8 +10,8 @@ namespace Kronhyx\BaseBundle\Service;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Kronhyx\BaseBundle\Base\ServiceBase;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactoryInterface;
 
@@ -46,7 +46,6 @@ class RecollectorService extends ServiceBase
     {
         $this->dispatcher = $dispatcher;
         $this->factory = $factory;
-        $this->collection = new ArrayCollection();
     }
 
     /**
@@ -57,19 +56,15 @@ class RecollectorService extends ServiceBase
      */
     public function getMenu()
     {
-        $event = new Event();
+        $event = new GenericEvent();
 
-        /** @noinspection PhpUndefinedFieldInspection */
-        $event->provider = $this->container->get('knp_menu.factory');
-
-        /** @noinspection PhpUndefinedFieldInspection */
-        $event->menu = $event->provider->createItem('menu');
+        $event->setArgument('provider', $this->container->get('knp_menu.factory'));
+        $event->setArgument('menu', $event->getArgument('provider')->createItem('menu'));
+        $event->setArgument('collection', new ArrayCollection());
 
         $this->dispatcher->dispatch('kronhyx.base.menu.dispatch', $event);
 
-        $this->collection = $event->collection;
-
-        return $this->collection;
+        return $event->getArgument('collection');
     }
 
     /**
@@ -78,26 +73,25 @@ class RecollectorService extends ServiceBase
      */
     public function getForm(string $form = null)
     {
-        $event = new Event();
-        $event->factory = $this->factory;
-        $event->collection = $this->collection;
+        $event = new GenericEvent();
+
+        $event->setArgument('factory', $this->factory);
+        $event->setArgument('collection', new ArrayCollection());
 
         $this->dispatcher->dispatch('kronhyx.base.form.dispatch', $event);
-
-        $this->form = $event->collection;
 
         if ($form) {
             /**
              * @var Form $item
              */
-            foreach ($event->collection->toArray() as $key => $item) {
+            foreach ($event->getArgument('collection')->toArray() as $key => $item) {
                 if ($item instanceof Form && $form === $key) {
                     return $item;
                 }
             }
         }
 
-        return $this->form;
+        return $event->getArgument('collection');
     }
 
 }

@@ -5,6 +5,7 @@ namespace Kronhyx\BaseBundle\Base;
 use AppBundle\Controller\AdminController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,14 +53,14 @@ abstract class FormTypeBase extends AbstractType implements FormTypeBaseInterfac
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @throws \ReflectionException
      */
-    public function getType(Event $event)
+    public function getType(GenericEvent $event)
     {
         /**
          * @var FormFactoryInterface $factory
          * @var ArrayCollection $collection
          */
-        $factory = $event->factory;
-        $collection = $event->collection;
+        $factory = $event->getArgument('factory');
+        $collection = $event->getArgument('collection');
 
         $reflection = new \ReflectionClass($this);
 

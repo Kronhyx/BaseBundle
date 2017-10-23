@@ -60,6 +60,6 @@ class RegisterType extends FormTypeBase
      */
     public function getAction()
     {
-        return $this->router->generate('kronhyx_base_auth_register');
+//        return $this->router->generate('kronhyx_base_auth_register');
     }
 }

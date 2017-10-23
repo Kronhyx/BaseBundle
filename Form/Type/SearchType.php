@@ -48,7 +48,7 @@ class SearchType extends FormTypeBase
      */
     public function getAction()
     {
-        return $this->router->generate('kronhyx_base_main_dashboard');
+//        return $this->router->generate('kronhyx_base_main_dashboard');
     }
 
     /**

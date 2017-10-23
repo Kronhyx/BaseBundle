@@ -52,6 +52,6 @@ class LoginType extends FormTypeBase
      */
     public function getAction()
     {
-        return $this->router->generate('app_auth_check');
+//        return $this->router->generate('app_auth_check');
     }
 }

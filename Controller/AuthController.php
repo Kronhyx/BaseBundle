@@ -26,62 +26,62 @@ use Symfony\Component\Security\Core\User\UserChecker;
 class AuthController extends ControllerBase
 {
 
-    /**
-     * @Route("login.php/")
-     * @Template("@KronhyxBase/Auth/login.html.twig")
-     *
-     * @param Request $request
-     * @return array
-     */
-    public function loginAction(Request $request)
-    {
-        /**@var FirewallConfig $config */
-        $config = $this->get('security.firewall.map')->getFirewallConfig($request);
-        /**@var ChainUserProvider|EntityUserProvider $provider */
-        $provider = $this->get($config->getProvider());
-        /**@var UserChecker $checker */
-        $checker = $this->get($config->getUserChecker());
-
-        \dump($config, $checker, $provider);
-        exit;
-        return [];
-
-    }
-
-    /**
-     * @Route("recover.php/")
-     * @Template("@KronhyxBase/Auth/recover.html.twig")
-     *
-     * @param Request $request
-     * @return array|string
-     */
-    public function recoverAction(Request $request)
-    {
-        $form = $this->get(RecollectorService::class)->getForm('recover')->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            return $this->render('@KronhyxBase/Auth/recoverConfirm.html.twig', [
-                'data' => $form->getData()
-            ]);
-        }
-
-        return [];
-
-    }
-
-    /**
-     * @Route("register.php/")
-     * @Template("@KronhyxBase/Auth/register.html.twig")
-     *
-     * @param Request $request
-     * @return array
-     */
-    public function registerAction(Request $request)
-    {
-
-        return [];
-
-    }
+//    /**
+//     * @Route("login.php/")
+//     * @Template("@KronhyxBase/Auth/login.html.twig")
+//     *
+//     * @param Request $request
+//     * @return array
+//     */
+//    public function loginAction(Request $request)
+//    {
+//        /**@var FirewallConfig $config */
+//        $config = $this->get('security.firewall.map')->getFirewallConfig($request);
+//        /**@var ChainUserProvider|EntityUserProvider $provider */
+//        $provider = $this->get($config->getProvider());
+//        /**@var UserChecker $checker */
+//        $checker = $this->get($config->getUserChecker());
+//
+//        \dump($config, $checker, $provider);
+//        exit;
+//        return [];
+//
+//    }
+//
+//    /**
+//     * @Route("recover.php/")
+//     * @Template("@KronhyxBase/Auth/recover.html.twig")
+//     *
+//     * @param Request $request
+//     * @return array|string
+//     */
+//    public function recoverAction(Request $request)
+//    {
+//        $form = $this->get(RecollectorService::class)->getForm('recover')->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//
+//            return $this->render('@KronhyxBase/Auth/recoverConfirm.html.twig', [
+//                'data' => $form->getData()
+//            ]);
+//        }
+//
+//        return [];
+//
+//    }
+//
+//    /**
+//     * @Route("register.php/")
+//     * @Template("@KronhyxBase/Auth/register.html.twig")
+//     *
+//     * @param Request $request
+//     * @return array
+//     */
+//    public function registerAction(Request $request)
+//    {
+//
+//        return [];
+//
+//    }
 
 }

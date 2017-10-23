@@ -66,7 +66,6 @@ abstract class MenuBase implements MenuBaseInterface
      */
     public function getMenu(Event $event)
     {
-
         /**
          * @var MenuItem $menu
          * @var MenuFactory $factory
@@ -92,8 +91,9 @@ abstract class MenuBase implements MenuBaseInterface
          */
         foreach ($reflection->getMethods() as $method) {
             if ($method->class !== self::class && $method->getNumberOfParameters() === 1) {
-                /** @noinspection PhpUndefinedFieldInspection */
+
                 $item->addChild($method->invoke($this, $event->provider));
+
             }
         }
         $menu->addChild($this->isCurrent($item));

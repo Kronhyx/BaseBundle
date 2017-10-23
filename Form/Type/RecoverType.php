@@ -42,7 +42,7 @@ class RecoverType extends FormTypeBase
      */
     public function getAction()
     {
-        return $this->router->generate('kronhyx_base_auth_recover');
+//        return $this->router->generate('kronhyx_base_auth_recover');
     }
 
 }
