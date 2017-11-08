@@ -16,7 +16,6 @@ use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\Router;
 
 /**
  * Class RouteListener
@@ -25,23 +24,16 @@ use Symfony\Component\Routing\Router;
 class RouteListener extends Loader
 {
     /**
-     * @var Router $router
-     */
-    private $router;
-
-    /**
      * @var KernelInterface $kernel
      */
     private $kernel;
 
     /**
      * RouteListener constructor.
-     * @param Router $router
      * @param KernelInterface $kernel
      */
-    public function __construct(Router $router, KernelInterface $kernel)
+    public function __construct(KernelInterface $kernel)
     {
-        $this->router = $router;
         $this->kernel = $kernel;
     }
 
