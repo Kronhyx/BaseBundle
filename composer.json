@@ -14,10 +14,7 @@
     }
   ],
   "require": {
-    "symfony/config": "^3",
-    "symfony/http-kernel": "^3",
-    "doctrine/orm": "^2",
-    "symfony/form": "^3",
+    "doctrine/orm": "^2",    
     "knplabs/knp-menu-bundle": "^2.0"
   },
   "require-dev": {
