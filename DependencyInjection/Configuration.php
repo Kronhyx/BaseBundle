@@ -37,7 +37,6 @@ class Configuration implements ConfigurationInterface
      *
      * @return ArrayNodeDefinition
      *
-     * @throws \ReflectionException
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      */
